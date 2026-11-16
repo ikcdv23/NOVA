@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "NOVA: depurar servidor Next.js",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev -- --inspect",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "NOVA: crear administrador",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--env-file=.env", "--import", "tsx"],
+      "program": "${workspaceFolder}/scripts/create-admin.ts",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "NOVA: migrar base de datos",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--env-file=.env", "--import", "tsx"],
+      "program": "${workspaceFolder}/scripts/migrate.ts",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}

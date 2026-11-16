@@ -1,0 +1,1996 @@
+{
+ "url": "http://localhost:3000",
+ "at": "2026-11-14T06:11:48.412Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.38,
+    0.46,
+    0.83,
+    0.73,
+    0.65
+   ],
+   "motion": {
+    "elements": 15,
+    "css": 15,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 3719,
+     "screens": 4.1,
+     "words": 208,
+     "img": 8,
+     "video": 0,
+     "canvas": 0,
+     "svg": 1,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 8,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "image?url=%2Fimages%2Fknit.png&w=750&q=75",
+      "image?url=%2Fimages%2Feditorial.png&w=750&q=75",
+      "image?url=%2Fimages%2Fbomber.png&w=750&q=75",
+      "image?url=%2Fimages%2Fshirt.png&w=750&q=75",
+      "image?url=%2Fimages%2Fdenim.png&w=750&q=75",
+      "image?url=%2Fimages%2Fknit.png&w=750&q=75",
+      "image?url=%2Fimages%2Fshirt.png&w=750&q=75",
+      "image?url=%2Fimages%2Fbomber.png&w=750&q=75"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Buen pasado. Mejor presente.",
+     "words": 4,
+     "chars": 28,
+     "lines": 2,
+     "size": 121,
+     "vw": 8.4,
+     "font": "STIX Two Text",
+     "weight": 400,
+     "tracking": -0.055,
+     "leading": 0.96,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.82,
+     "top": 204,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Buen pasado. Mejor presente.",
+     "words": 4,
+     "lines": 2,
+     "size": 121,
+     "font": "STIX Two Text"
+    },
+    "headings": [
+     {
+      "text": "NOVA Archive",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 34,
+      "vw": 2.4,
+      "font": "DM Sans",
+      "weight": 600,
+      "tracking": -0.059,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.11,
+      "top": 37,
+      "mixedFonts": [
+       "DM Sans",
+       "STIX Two Text"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Buen pasado. Mejor presente.",
+      "words": 4,
+      "chars": 28,
+      "lines": 2,
+      "size": 121,
+      "vw": 8.4,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 0.96,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.82,
+      "top": 204,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "En nuestro radar",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 62,
+      "vw": 4.3,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.28,
+      "top": 1222,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Dos caminos. El mismo criterio.",
+      "words": 5,
+      "chars": 31,
+      "lines": 2,
+      "size": 62,
+      "vw": 4.3,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.3,
+      "top": 2126,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Ropa nueva",
+      "words": 2,
+      "chars": 10,
+      "lines": 1,
+      "size": 36,
+      "vw": 2.5,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.04,
+      "leading": 1.35,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.26,
+      "top": 2576,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Vintage",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 36,
+      "vw": 2.5,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.04,
+      "leading": 1.35,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.26,
+      "top": 2676,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Lo vemos juntos?",
+      "words": 3,
+      "chars": 17,
+      "lines": 1,
+      "size": 42,
+      "vw": 2.9,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.38,
+      "top": 2955,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Buenas prendas. Nuevas historias.",
+      "words": 4,
+      "chars": 33,
+      "lines": 2,
+      "size": 30,
+      "vw": 2.1,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.04,
+      "leading": 1.15,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.14,
+      "top": 3173,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "NOVA Archive",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 288,
+      "vw": 20,
+      "font": "DM Sans",
+      "weight": 500,
+      "tracking": -0.08,
+      "leading": 1.15,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 3302,
+      "mixedFonts": [
+       "DM Sans",
+       "STIX Two Text"
+      ],
+      "tag": "div",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 2
+    },
+    "type": {
+     "families": [
+      {
+       "family": "DM Sans",
+       "share": 0.86,
+       "mono": false
+      },
+      {
+       "family": "STIX Two Text",
+       "share": 0.14,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      19,
+      22,
+      30,
+      34,
+      36,
+      42,
+      62,
+      121,
+      190,
+      288
+     ],
+     "sizeCount": 14,
+     "notLoaded": [],
+     "body": {
+      "font": "DM Sans",
+      "size": 16,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 12
+     },
+     "measureChars": 45,
+     "max": {
+      "size": 288,
+      "vw": 20,
+      "font": "DM Sans",
+      "text": "NOVA"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f2f1eb",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.21,
+      "l": 0.94
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#e7e6de",
+       "top": 1998,
+       "hsl": {
+        "h": 53,
+        "s": 0.16,
+        "l": 0.89
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#252722",
+       "share": 0.68
+      },
+      {
+       "color": "#5f6259",
+       "share": 0.18
+      },
+      {
+       "color": "#f2f1eb",
+       "share": 0.12
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#252722",
+      "hsl": {
+       "h": 84,
+       "s": 0.07,
+       "l": 0.14
+      },
+      "fg": "#f2f1eb"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 2,
+     "radius": 0,
+     "height": 54,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Saltar al contenido",
+      "Vintage / segunda mano ↗"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 8,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.19
+     }
+    ],
+    "nav": {
+     "links": 5,
+     "fixed": false,
+     "height": 108,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "stix two text",
+     "dm sans"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 3719,
+    "margins": {
+     "left": 72,
+     "right": 72
+    },
+    "sections": [
+     {
+      "sel": "section.hero",
+      "tag": "section",
+      "top": 120,
+      "height": 1002,
+      "words": 33,
+      "media": 2,
+      "middle": 13,
+      "heading": {
+       "text": "Buen pasado.",
+       "size": 121,
+       "tag": "h1"
+      },
+      "left": 72,
+      "right": 72,
+      "textLeft": 72,
+      "textRight": 72,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#seleccion.featured.section-pad",
+      "tag": "section",
+      "top": 1122,
+      "height": 876,
+      "words": 53,
+      "media": 4,
+      "middle": 22,
+      "heading": {
+       "text": "En nuestro radar",
+       "size": 62,
+       "tag": "h2"
+      },
+      "left": 72,
+      "right": 72,
+      "textLeft": 72,
+      "textRight": 72,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.collection-story.section-pad",
+      "tag": "section",
+      "top": 1998,
+      "height": 852,
+      "words": 44,
+      "media": 2,
+      "middle": 117,
+      "heading": {
+       "text": "Dos caminos.",
+       "size": 62,
+       "tag": "h2"
+      },
+      "left": 72,
+      "right": 72,
+      "textLeft": 72,
+      "textRight": 283,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.contact-strip.section-pad",
+      "tag": "section",
+      "top": 2849,
+      "height": 254,
+      "words": 25,
+      "media": 0,
+      "middle": 303,
+      "heading": {
+       "text": "¿Lo vemos juntos?",
+       "size": 42,
+       "tag": "h2"
+      },
+      "left": 72,
+      "right": 96,
+      "textLeft": 72,
+      "textRight": 96,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.footer",
+      "tag": "footer",
+      "top": 3103,
+      "height": 615,
+      "words": 26,
+      "media": 0,
+      "middle": 4,
+      "heading": {
+       "text": "NOVA",
+       "size": 288,
+       "tag": "div"
+      },
+      "left": 72,
+      "right": 72,
+      "textLeft": 72,
+      "textRight": 72,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Buen pasado. Mejor presente.",
+      "size": 121,
+      "top": 204,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 72,
+      "n": 7
+     },
+     {
+      "x": 416,
+      "n": 1
+     },
+     {
+      "x": 452,
+      "n": 1
+     },
+     {
+      "x": 607,
+      "n": 1
+     },
+     {
+      "x": 667,
+      "n": 1
+     },
+     {
+      "x": 731,
+      "n": 1
+     },
+     {
+      "x": 1000,
+      "n": 1
+     },
+     {
+      "x": 1046,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 14,
+    "bodySize": 16,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.11,
+    "voidBox": {
+     "x": 1200,
+     "y": 300,
+     "w": 240,
+     "h": 600
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.31,
+    0.77,
+    0.77
+   ],
+   "motion": {
+    "elements": 15,
+    "css": 15,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 2862,
+     "screens": 2.8,
+     "words": 208,
+     "img": 8,
+     "video": 0,
+     "canvas": 0,
+     "svg": 1,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 7,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "image?url=%2Fimages%2Feditorial.png&w=384&q=75",
+      "image?url=%2Fimages%2Fbomber.png&w=384&q=75",
+      "image?url=%2Fimages%2Fshirt.png&w=384&q=75",
+      "image?url=%2Fimages%2Fdenim.png&w=384&q=75",
+      "image?url=%2Fimages%2Fknit.png&w=384&q=75",
+      "image?url=%2Fimages%2Fshirt.png&w=384&q=75",
+      "image?url=%2Fimages%2Fbomber.png&w=384&q=75"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Buen pasado. Mejor presente.",
+     "words": 4,
+     "chars": 28,
+     "lines": 2,
+     "size": 65.3,
+     "vw": 8.5,
+     "font": "STIX Two Text",
+     "weight": 400,
+     "tracking": -0.055,
+     "leading": 0.96,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.82,
+     "top": 204,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Buen pasado. Mejor presente.",
+     "words": 4,
+     "lines": 2,
+     "size": 65.3,
+     "font": "STIX Two Text"
+    },
+    "headings": [
+     {
+      "text": "NOVA Archive",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 34,
+      "vw": 4.4,
+      "font": "DM Sans",
+      "weight": 600,
+      "tracking": -0.059,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.21,
+      "top": 37,
+      "mixedFonts": [
+       "DM Sans",
+       "STIX Two Text"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Buen pasado. Mejor presente.",
+      "words": 4,
+      "chars": 28,
+      "lines": 2,
+      "size": 65.3,
+      "vw": 8.5,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 0.96,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.82,
+      "top": 204,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "En nuestro radar",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 36,
+      "vw": 4.7,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.33,
+      "top": 835,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Dos caminos. El mismo criterio.",
+      "words": 5,
+      "chars": 31,
+      "lines": 2,
+      "size": 36,
+      "vw": 4.7,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.35,
+      "top": 1546,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Ropa nueva",
+      "words": 2,
+      "chars": 10,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.04,
+      "leading": 1.35,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.24,
+      "top": 1764,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Vintage",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 29,
+      "vw": 3.8,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.04,
+      "leading": 1.35,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.24,
+      "top": 1864,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Lo vemos juntos?",
+      "words": 3,
+      "chars": 17,
+      "lines": 1,
+      "size": 42,
+      "vw": 5.5,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.42,
+      "top": 2141,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Buenas prendas. Nuevas historias.",
+      "words": 4,
+      "chars": 33,
+      "lines": 2,
+      "size": 30,
+      "vw": 3.9,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.04,
+      "leading": 1.15,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.26,
+      "top": 2471,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "NOVA Archive",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 153.6,
+      "vw": 20,
+      "font": "DM Sans",
+      "weight": 500,
+      "tracking": -0.08,
+      "leading": 1.15,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.9,
+      "top": 2600,
+      "mixedFonts": [
+       "DM Sans",
+       "STIX Two Text"
+      ],
+      "tag": "div",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 2
+    },
+    "type": {
+     "families": [
+      {
+       "family": "DM Sans",
+       "share": 0.86,
+       "mono": false
+      },
+      {
+       "family": "STIX Two Text",
+       "share": 0.14,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      22,
+      29,
+      30,
+      34,
+      36,
+      42,
+      65,
+      101,
+      154
+     ],
+     "sizeCount": 14,
+     "notLoaded": [],
+     "body": {
+      "font": "DM Sans",
+      "size": 16,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 12
+     },
+     "measureChars": 34,
+     "max": {
+      "size": 153.6,
+      "vw": 20,
+      "font": "DM Sans",
+      "text": "NOVA"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f2f1eb",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.21,
+      "l": 0.94
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#e7e6de",
+       "top": 1418,
+       "hsl": {
+        "h": 53,
+        "s": 0.16,
+        "l": 0.89
+       }
+      },
+      {
+       "color": "#252722",
+       "top": 2028,
+       "hsl": {
+        "h": 84,
+        "s": 0.07,
+        "l": 0.14
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#252722",
+       "share": 0.68
+      },
+      {
+       "color": "#5f6259",
+       "share": 0.18
+      },
+      {
+       "color": "#f2f1eb",
+       "share": 0.12
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#252722",
+      "hsl": {
+       "h": 84,
+       "s": 0.07,
+       "l": 0.14
+      },
+      "fg": "#f2f1eb"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 2,
+     "radius": 0,
+     "height": 54,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Saltar al contenido",
+      "Vintage / segunda mano ↗"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 1,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.11
+     }
+    ],
+    "nav": {
+     "links": 5,
+     "fixed": false,
+     "height": 108,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "stix two text",
+     "dm sans"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 2862,
+    "margins": {
+     "left": 38,
+     "right": 38
+    },
+    "sections": [
+     {
+      "sel": "section.hero",
+      "tag": "section",
+      "top": 120,
+      "height": 615,
+      "words": 33,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Buen pasado.",
+       "size": 65,
+       "tag": "h1"
+      },
+      "left": 38,
+      "right": 38,
+      "textLeft": 38,
+      "textRight": 38,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#seleccion.featured.section-pad",
+      "tag": "section",
+      "top": 735,
+      "height": 683,
+      "words": 53,
+      "media": 4,
+      "middle": 16,
+      "heading": {
+       "text": "En nuestro radar",
+       "size": 36,
+       "tag": "h2"
+      },
+      "left": 38,
+      "right": 38,
+      "textLeft": 38,
+      "textRight": 38,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.collection-story.section-pad",
+      "tag": "section",
+      "top": 1418,
+      "height": 609,
+      "words": 44,
+      "media": 2,
+      "middle": 51,
+      "heading": {
+       "text": "Dos caminos.",
+       "size": 36,
+       "tag": "h2"
+      },
+      "left": 38,
+      "right": 38,
+      "textLeft": 38,
+      "textRight": 63,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.contact-strip.section-pad",
+      "tag": "section",
+      "top": 2028,
+      "height": 374,
+      "words": 25,
+      "media": 0,
+      "middle": 78,
+      "heading": {
+       "text": "¿Lo vemos juntos?",
+       "size": 42,
+       "tag": "h2"
+      },
+      "left": 38,
+      "right": 49,
+      "textLeft": 38,
+      "textRight": 49,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.footer",
+      "tag": "footer",
+      "top": 2401,
+      "height": 461,
+      "words": 26,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "NOVA",
+       "size": 154,
+       "tag": "div"
+      },
+      "left": 38,
+      "right": 38,
+      "textLeft": 38,
+      "textRight": 38,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Buen pasado. Mejor presente.",
+      "size": 65,
+      "top": 204,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 38,
+      "n": 7
+     },
+     {
+      "x": 223,
+      "n": 1
+     },
+     {
+      "x": 241,
+      "n": 1
+     },
+     {
+      "x": 350,
+      "n": 1
+     },
+     {
+      "x": 392,
+      "n": 1
+     },
+     {
+      "x": 409,
+      "n": 1
+     },
+     {
+      "x": 548,
+      "n": 1
+     },
+     {
+      "x": 561,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 14,
+    "bodySize": 16,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.43,
+    0.57,
+    1,
+    0.71
+   ],
+   "motion": {
+    "elements": 15,
+    "css": 15,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 3144,
+     "screens": 3.7,
+     "words": 202,
+     "img": 8,
+     "video": 0,
+     "canvas": 0,
+     "svg": 1,
+     "sections": 4,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 7,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "image?url=%2Fimages%2Feditorial.png&w=384&q=75",
+      "image?url=%2Fimages%2Fbomber.png&w=384&q=75",
+      "image?url=%2Fimages%2Fshirt.png&w=384&q=75",
+      "image?url=%2Fimages%2Fdenim.png&w=384&q=75",
+      "image?url=%2Fimages%2Fknit.png&w=384&q=75",
+      "image?url=%2Fimages%2Fshirt.png&w=384&q=75",
+      "image?url=%2Fimages%2Fbomber.png&w=384&q=75"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Buen pasado. Mejor presente.",
+     "words": 4,
+     "chars": 28,
+     "lines": 2,
+     "size": 42,
+     "vw": 10.8,
+     "font": "STIX Two Text",
+     "weight": 400,
+     "tracking": -0.055,
+     "leading": 1.02,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.89,
+     "top": 202,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "Buen pasado. Mejor presente.",
+     "words": 4,
+     "lines": 2,
+     "size": 42,
+     "font": "STIX Two Text"
+    },
+    "headings": [
+     {
+      "text": "NOVA Archive",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "DM Sans",
+      "weight": 600,
+      "tracking": -0.071,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.35,
+      "top": 31,
+      "mixedFonts": [
+       "DM Sans",
+       "STIX Two Text"
+      ],
+      "tag": "a",
+      "kind": "heading"
+     },
+     {
+      "text": "Buen pasado. Mejor presente.",
+      "words": 4,
+      "chars": 28,
+      "lines": 2,
+      "size": 42,
+      "vw": 10.8,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.055,
+      "leading": 1.02,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 202,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "En nuestro radar",
+      "words": 3,
+      "chars": 16,
+      "lines": 2,
+      "size": 36,
+      "vw": 9.2,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.54,
+      "top": 733,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Dos caminos. El mismo criterio.",
+      "words": 5,
+      "chars": 31,
+      "lines": 2,
+      "size": 44,
+      "vw": 11.3,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 1710,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Ropa nueva",
+      "words": 2,
+      "chars": 10,
+      "lines": 1,
+      "size": 30,
+      "vw": 7.7,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.04,
+      "leading": 1.35,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.42,
+      "top": 2219,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Vintage",
+      "words": 1,
+      "chars": 7,
+      "lines": 1,
+      "size": 30,
+      "vw": 7.7,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.04,
+      "leading": 1.35,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.42,
+      "top": 2274,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Lo vemos juntos?",
+      "words": 3,
+      "chars": 17,
+      "lines": 1,
+      "size": 40,
+      "vw": 10.3,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.045,
+      "leading": 1.03,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 2469,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Buenas prendas. Nuevas historias.",
+      "words": 4,
+      "chars": 33,
+      "lines": 2,
+      "size": 25,
+      "vw": 6.4,
+      "font": "STIX Two Text",
+      "weight": 400,
+      "tracking": -0.04,
+      "leading": 1.15,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.42,
+      "top": 2799,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "NOVA Archive",
+      "words": 2,
+      "chars": 12,
+      "lines": 1,
+      "size": 81.9,
+      "vw": 21,
+      "font": "DM Sans",
+      "weight": 500,
+      "tracking": -0.08,
+      "leading": 1.15,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 2939,
+      "mixedFonts": [
+       "DM Sans",
+       "STIX Two Text"
+      ],
+      "tag": "div",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 3,
+     "mixedFontHeadings": 2
+    },
+    "type": {
+     "families": [
+      {
+       "family": "DM Sans",
+       "share": 0.85,
+       "mono": false
+      },
+      {
+       "family": "STIX Two Text",
+       "share": 0.15,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      20,
+      25,
+      28,
+      30,
+      36,
+      40,
+      42,
+      44,
+      54,
+      82
+     ],
+     "sizeCount": 14,
+     "notLoaded": [],
+     "body": {
+      "font": "DM Sans",
+      "size": 16,
+      "leading": 1.55,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 12
+     },
+     "measureChars": 43,
+     "max": {
+      "size": 81.9,
+      "vw": 21,
+      "font": "DM Sans",
+      "text": "NOVA"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#f2f1eb",
+     "bodyBgHsl": {
+      "h": 51,
+      "s": 0.21,
+      "l": 0.94
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#e7e6de",
+       "top": 1645,
+       "hsl": {
+        "h": 53,
+        "s": 0.16,
+        "l": 0.89
+       }
+      },
+      {
+       "color": "#252722",
+       "top": 2404,
+       "hsl": {
+        "h": 84,
+        "s": 0.07,
+        "l": 0.14
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#252722",
+       "share": 0.67
+      },
+      {
+       "color": "#5f6259",
+       "share": 0.19
+      },
+      {
+       "color": "#f2f1eb",
+       "share": 0.12
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.02
+      },
+      {
+       "color": "#000000",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#252722",
+      "hsl": {
+       "h": 84,
+       "s": 0.07,
+       "l": 0.14
+      },
+      "fg": "#f2f1eb"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 3,
+     "inHero": 2,
+     "radius": 0,
+     "height": 53,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Saltar al contenido",
+      "Vintage / segunda mano ↗"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.15
+     }
+    ],
+    "nav": {
+     "links": 2,
+     "fixed": false,
+     "height": 90,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "stix two text",
+     "dm sans"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 3144,
+    "margins": {
+     "left": 22,
+     "right": 22
+    },
+    "sections": [
+     {
+      "sel": "section.hero",
+      "tag": "section",
+      "top": 90,
+      "height": 578,
+      "words": 33,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Buen pasado.",
+       "size": 42,
+       "tag": "h1"
+      },
+      "left": 22,
+      "right": 22,
+      "textLeft": 22,
+      "textRight": 22,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#seleccion.featured.section-pad",
+      "tag": "section",
+      "top": 668,
+      "height": 977,
+      "words": 53,
+      "media": 4,
+      "middle": 9,
+      "heading": {
+       "text": "En nuestro radar",
+       "size": 36,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 22,
+      "textLeft": 22,
+      "textRight": 22,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.collection-story.section-pad",
+      "tag": "section",
+      "top": 1645,
+      "height": 759,
+      "words": 44,
+      "media": 2,
+      "middle": 0,
+      "heading": {
+       "text": "Dos caminos.",
+       "size": 44,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 22,
+      "textLeft": 22,
+      "textRight": 29,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.contact-strip.section-pad",
+      "tag": "section",
+      "top": 2404,
+      "height": 345,
+      "words": 25,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "¿Lo vemos juntos?",
+       "size": 40,
+       "tag": "h2"
+      },
+      "left": 22,
+      "right": 58,
+      "textLeft": 22,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer.footer",
+      "tag": "footer",
+      "top": 2749,
+      "height": 395,
+      "words": 26,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "NOVA",
+       "size": 82,
+       "tag": "div"
+      },
+      "left": 22,
+      "right": 12,
+      "textLeft": 22,
+      "textRight": 12,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Buen pasado. Mejor presente.",
+      "size": 42,
+      "top": 202,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 22,
+      "n": 10
+     },
+     {
+      "x": 203,
+      "n": 3
+     },
+     {
+      "x": 57,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 14,
+    "bodySize": 16,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "mixed-font-headline",
+   "width": 1440,
+   "message": "2 headline(s) switch typeface or to italic mid-line (the \"one italic serif word\" move).",
+   "fix": "Set the whole headline in one face. Emphasis comes from the words.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "palette-cream",
+   "width": 1440,
+   "message": "Yellow-cream background (page background #f2f1eb, section #e7e6de, text #f2f1eb).",
+   "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "14 different font sizes (13, 14, 15, 16, 19, 22, 30, 34, 36, 42, 62, 121, 190, 288).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Little motion: 15 element(s) moved while the page loaded and scrolled.",
+   "fix": "Give every section an entrance for its parts (not one fade of the whole block) and add one moving picture: a looping clip or a slow move on a photograph."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "C:\\Users\\alcat\\Desktop\\Proyectos DEV\\NOVA\\.taste-skill\\inspect-final\\desktop-fold.jpg",
+   "pages": [
+    "C:\\Users\\alcat\\Desktop\\Proyectos DEV\\NOVA\\.taste-skill\\inspect-final\\desktop-page-01.jpg",
+    "C:\\Users\\alcat\\Desktop\\Proyectos DEV\\NOVA\\.taste-skill\\inspect-final\\desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "C:\\Users\\alcat\\Desktop\\Proyectos DEV\\NOVA\\.taste-skill\\inspect-final\\tablet-fold.jpg",
+   "pages": [
+    "C:\\Users\\alcat\\Desktop\\Proyectos DEV\\NOVA\\.taste-skill\\inspect-final\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "C:\\Users\\alcat\\Desktop\\Proyectos DEV\\NOVA\\.taste-skill\\inspect-final\\mobile-fold.jpg",
+   "pages": [
+    "C:\\Users\\alcat\\Desktop\\Proyectos DEV\\NOVA\\.taste-skill\\inspect-final\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}
