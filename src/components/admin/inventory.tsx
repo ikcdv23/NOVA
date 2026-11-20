@@ -5,8 +5,8 @@ import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { money } from '@/config/store';
 import { collections, type Product } from '@/modules/catalog/types';
-import { deleteProduct, setVisibility } from './actions';
-import { runCleanup } from '@/modules/media/actions';
+import { deleteProduct, setVisibility } from '@/modules/admin/actions/admin-actions';
+import { runCleanup } from '@/modules/media/actions/media-actions';
 export function Inventory({ products }: { products: Product[] }) {
   const [query, setQuery] = useState(''),
     [filter, setFilter] = useState('all'),

@@ -1,11 +1,12 @@
 'use server';
-import { getPublicProducts } from '@/modules/catalog/repository';
-import { cartSchema, quoteCart } from './logic';
+import { cartSchema } from '../logic';
+import { prepareQuote } from '../service/cart-service';
+
 export async function prepareWhatsApp(input: unknown): Promise<{ url?: string; error?: string }> {
   const parsed = cartSchema.safeParse(input);
   if (!parsed.success) return { error: 'La selección no es válida. Revisa las cantidades.' };
   try {
-    return { url: quoteCart(parsed.data, await getPublicProducts()).url };
+    return { url: (await prepareQuote(parsed.data)).url };
   } catch (error) {
     return {
       error:

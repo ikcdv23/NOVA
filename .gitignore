@@ -8,3 +8,4 @@ test-results/
 playwright-report/
 .qa/
 .taste-skill/inspect/
+src/generated/

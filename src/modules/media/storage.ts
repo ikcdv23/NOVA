@@ -1,5 +1,5 @@
 import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3';
-import { db } from '@/lib/db';
+import { pendingCleanup, removeCleanup } from './repository/media-repository';
 export function storage() {
   const { S3_ENDPOINT, S3_REGION, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, S3_BUCKET } = process.env;
   if (!S3_BUCKET || !S3_ACCESS_KEY_ID || !S3_SECRET_ACCESS_KEY)
@@ -15,16 +15,13 @@ export function storage() {
   };
 }
 export async function cleanupMedia() {
-  const { rows } = await db.query<{
-    object_key: string;
-  }>(`SELECT q.object_key FROM media_cleanup q WHERE q.not_before<=now()
-    AND NOT EXISTS (SELECT 1 FROM images i WHERE i.object_key=q.object_key) ORDER BY q.created_at LIMIT 100`);
+  const rows = await pendingCleanup();
   if (!rows.length) return 0;
   const { client, bucket } = storage();
   let count = 0;
   for (const row of rows) {
     await client.send(new DeleteObjectCommand({ Bucket: bucket, Key: row.object_key }));
-    await db.query('DELETE FROM media_cleanup WHERE object_key=$1', [row.object_key]);
+    await removeCleanup(row.object_key);
     count++;
   }
   return count;
