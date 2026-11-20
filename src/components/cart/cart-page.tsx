@@ -2,8 +2,8 @@
 import { StoreImage } from '@/components/store-image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { useCart } from './provider';
-import { prepareWhatsApp } from './actions';
+import { useCart } from '@/modules/cart/provider';
+import { prepareWhatsApp } from '@/modules/cart/actions/cart-actions';
 import { money } from '@/config/store';
 import type { Product } from '@/modules/catalog/types';
 export function CartPage({ products }: { products: Product[] }) {

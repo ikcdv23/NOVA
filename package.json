@@ -7,7 +7,9 @@
     "node": ">=22"
   },
   "scripts": {
+    "postinstall": "npm run prisma:generate",
     "dev": "next dev --webpack",
+    "prebuild": "npm run prisma:generate",
     "build": "next build --webpack",
     "start": "next start -H 0.0.0.0",
     "typecheck": "tsc --noEmit",
@@ -18,13 +20,16 @@
     "db:seed": "tsx --env-file=.env scripts/seed.ts",
     "admin:create": "tsx --env-file=.env scripts/create-admin.ts",
     "media:cleanup": "tsx --env-file=.env scripts/cleanup-media.ts",
-    "railway:migrate": "tsx scripts/migrate.ts"
+    "railway:migrate": "tsx scripts/migrate.ts",
+    "prisma:generate": "prisma generate"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.948.0",
     "@aws-sdk/s3-request-presigner": "^3.948.0",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/stix-two-text": "^5.2.8",
+    "@prisma/adapter-pg": "^7.10.1",
+    "@prisma/client": "^7.10.1",
     "next": "^16.0.10",
     "pg": "^8.16.3",
     "react": "^19.2.3",

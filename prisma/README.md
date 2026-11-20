@@ -4,15 +4,17 @@ Este directorio sirve para aprender y documentar el esquema de PostgreSQL de NOV
 
 ## Estado actual
 
-- Prisma está instalado solo como herramienta de desarrollo.
+- Prisma Client 7 está integrado para PostgreSQL con `@prisma/adapter-pg` y
+  se comparte desde `src/lib/prisma.ts`.
+- `npm install` y `npm run build` ejecutan `prisma generate`; el cliente
+  generado en `src/generated/` no se versiona.
 - `schema.prisma` describe las tablas que ya crea
   `db/migrations/001_initial.sql`.
-- NOVA sigue usando `pg` mediante `src/lib/db.ts`.
-- Las rutas, el catálogo, la administración y las migraciones actuales no usan
-  Prisma.
+- NOVA conserva `pg` mediante `src/lib/db.ts` en los módulos que aún no se han
+  migrado a Prisma.
 
-Por tanto, añadir o editar este esquema no modifica la base de datos ni cambia
-el funcionamiento de la tienda.
+El cliente tipado no es dueño del esquema: las migraciones SQL existentes
+siguen siendo la única vía para modificar la base de datos.
 
 ## Qué representa el esquema
 
@@ -30,27 +32,25 @@ la regla que exige una de `object_key` o `sample_url`, permanecen en
 `db/migrations/001_initial.sql`. Prisma los documenta indirectamente, pero
 no los sustituye.
 
-## Comandos seguros ahora
+## Generar Prisma Client
 
 Desde la raíz del repositorio:
 
 ```powershell
-npx prisma validate
+npm run prisma:generate
 ```
 
-Este comando solo comprueba la sintaxis y las relaciones del archivo de esquema.
-No crea tablas, no aplica migraciones y no genera código de aplicación.
+Para validar el esquema sin generar código usa `npx prisma validate`.
 
-## No ejecutar todavía
+## No ejecutar
 
-No ejecutes `prisma migrate dev`, `prisma migrate deploy`, `prisma db push`
-ni `prisma generate` como parte de NOVA. El proyecto ya tiene un sistema de
+No ejecutes `prisma migrate dev`, `prisma migrate deploy` ni `prisma db push`.
+El proyecto ya tiene un sistema de
 migraciones SQL en `db/migrations/`, y mezclar ambos sistemas sin una
 migración planificada puede desalinear el historial de la base de datos.
 
-## Siguiente paso cuando quieras integrar Prisma
+## Migración gradual
 
-Primero se decide si Prisma sustituirá el acceso con `pg` o solo se usará para
-consultas nuevas. Después se prepara una migración de referencia de la base de
-datos existente, se añade Prisma Client y se cambia una consulta pequeña con
-pruebas. Hasta entonces, este directorio es documentación y práctica aislada.
+Migra repositorios uno a uno, conservando la interfaz del servicio. No mezcles
+Prisma y `pg` dentro de una misma transacción: cada caso de uso debe elegir un
+solo mecanismo de acceso a datos hasta que la migración esté completa.
