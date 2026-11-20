@@ -94,10 +94,11 @@ El proyecto está preparado; no crea recursos ni publica nada por sí mismo.
 
 ```text
 src/app/                 Rutas, layouts, metadatos, errores y healthcheck
-src/modules/catalog/     Lectura pública, filtros, datos demo y fichas
+src/components/          Componentes visuales, agrupados por funcionalidad
+src/modules/catalog/     Lectura pública, filtros y datos demo
 src/modules/cart/        Carrito local, validación y mensaje WhatsApp
 src/modules/auth/        Hashes, sesiones, limitación de acceso y login
-src/modules/admin/       Formularios, validación y escrituras de inventario
+src/modules/admin/       Validación y escrituras de inventario
 src/modules/media/       Subida validada, S3, principal y limpieza
 src/config/store.ts      Marca, WhatsApp, correo y redes
 src/lib/db.ts            Pool PostgreSQL y transacciones
@@ -105,6 +106,20 @@ db/migrations/           Esquema SQL versionado
 scripts/                 Migración, seed, creación de admin y mantenimiento
 tests/                   Pruebas de lógica y recorridos de navegador
 ```
+
+Las páginas y layouts permanecen en `src/app/` por las convenciones de Next.js;
+los componentes visuales están en `src/components/`. Cada funcionalidad se
+organiza en `src/modules/` con las capas que necesita:
+
+- `actions/`: recibe solicitudes, valida la entrada, comprueba permisos y actualiza la vista.
+- `service/`: contiene las reglas y coordina operaciones y transacciones.
+- `repository/`: concentra las consultas a PostgreSQL.
+
+Las páginas de catálogo leen directamente del servicio: no necesitan una acción
+para mostrar datos. El carrito vive en el navegador y consulta el catálogo antes
+de preparar WhatsApp, por lo que no tiene repositorio propio. La app usa SQL con
+`pg`; Prisma Client está configurado para una migración gradual. Las migraciones
+SQL de `db/migrations/` siguen siendo la fuente de verdad de la base de datos.
 
 El stock vive en `variants`, por prenda y talla. El precio es un entero de céntimos. El catálogo usa exclusivamente prendas publicadas; las lecturas son dinámicas y las mutaciones invalidan las rutas. El navegador guarda solo identificadores, tallas y cantidades: el servidor vuelve a comprobar publicación, tallas, precios y disponibilidad al preparar WhatsApp. No escribe pedidos, no reserva unidades y nunca decrementa stock.
 

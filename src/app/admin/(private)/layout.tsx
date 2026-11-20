@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { requireAdmin } from '@/modules/auth/session';
-import { logout } from '@/modules/auth/actions';
+import { logout } from '@/modules/auth/actions/auth-actions';
 export const dynamic = 'force-dynamic';
 export const metadata = { title: 'Administración', robots: { index: false, follow: false } };
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
