@@ -4,21 +4,21 @@ Tienda de ropa masculina nueva y vintage, reutilizable como plantilla. Next.js 1
 
 ## Inicio rápido: demo sin servicios
 
-Necesitas Node.js 22 o superior y npm. Desde la raíz:
+Necesitas Node.js 22 o superior y pnpm (probado con la versión 12). Desde la raíz:
 
 ```sh
-npm ci
+pnpm install --frozen-lockfile
 cp .env.example .env
-npm run dev
+pnpm dev
 ```
 
 En PowerShell, usa `Copy-Item .env.example .env` en lugar de `cp`. Abre http://localhost:3000. `DEMO_MODE=true` utiliza las prendas de ejemplo y deshabilita el acceso privado. El carrito, los filtros y la preparación del mensaje funcionan en demo. No hay credenciales de administrador predeterminadas.
 
 ```sh
-npm run typecheck
-npm test
-npm run build
-npm start
+pnpm typecheck
+pnpm test
+pnpm build
+pnpm start
 ```
 
 Se utiliza Webpack de Next para evitar restricciones de enlaces de Turbopack en algunos entornos Windows. Las fuentes y fotografías de ejemplo se incluyen localmente; las imágenes de catálogo se optimizan con Next Image.
@@ -28,9 +28,9 @@ Se utiliza Webpack de Next para evitar restricciones de enlaces de Turbopack en 
 1. Arranca Docker Desktop y ejecuta `docker compose up -d`. Incluye PostgreSQL en 5433 y MinIO en 9000, ambos restringidos a localhost. El puerto 5433 evita conflictos con otros PostgreSQL en el puerto habitual 5432; debe coincidir con el puerto de `DATABASE_URL` en `.env`.
 2. Abre la consola de MinIO en http://localhost:9001, usa las credenciales locales de `.env.example` y crea el bucket **nova-images**, privado. No uses esas credenciales en producción.
 3. En `.env`, cambia `DEMO_MODE=false`. Las otras variables de ejemplo conectan con estos servicios locales.
-4. Ejecuta `npm run db:migrate`. Aplica las migraciones SQL una sola vez, en transacción, con un bloqueo entre despliegues concurrentes.
-5. Opcional: `npm run db:seed`. Inserta ocho prendas sin sobrescribir las existentes. Sus imágenes de ejemplo se sirven desde `public/images`.
-6. Crea tu administrador como se explica abajo y reinicia `npm run dev`.
+4. Ejecuta `pnpm db:migrate`. Aplica las migraciones SQL una sola vez, en transacción, con un bloqueo entre despliegues concurrentes.
+5. Opcional: `pnpm db:seed`. Inserta ocho prendas sin sobrescribir las existentes. Sus imágenes de ejemplo se sirven desde `public/images`.
+6. Crea tu administrador como se explica abajo y reinicia `pnpm dev`.
 
 También puedes usar un PostgreSQL y un S3-compatible externos sin Docker. Configura sus conexiones en `.env`. El bucket debe existir antes de subir fotografías. El navegador obtiene las imágenes de S3 mediante URL firmada temporal; no necesita acceso de escritura ni credenciales.
 
@@ -43,7 +43,7 @@ ADMIN_EMAIL=tu-correo@tu-dominio.es
 ADMIN_PASSWORD=una-contrasena-larga-unica-de-al-menos-14-caracteres
 ```
 
-Ejecuta `npm run admin:create` y entra en `/admin/login`. El comando exige entre 14 y 128 caracteres, guarda un hash scrypt con sal aleatoria y rechaza correos existentes. Elimina `ADMIN_PASSWORD` del entorno después. No hay registro público ni recuperación por correo. Para revocar sesiones, elimina las filas de `sessions` del usuario; para recuperar acceso, crea otro administrador desde un entorno autorizado.
+Ejecuta `pnpm admin:create` y entra en `/admin/login`. El comando exige entre 14 y 128 caracteres, guarda un hash scrypt con sal aleatoria y rechaza correos existentes. Elimina `ADMIN_PASSWORD` del entorno después. No hay registro público ni recuperación por correo. Para revocar sesiones, elimina las filas de `sessions` del usuario; para recuperar acceso, crea otro administrador desde un entorno autorizado.
 
 Flujo de inventario: crear borrador → añadir hasta cinco fotos → elegir principal → publicar. Las tallas tienen existencias independientes. Ocultar retira la prenda del catálogo; eliminar requiere confirmación. Al borrar la última foto la prenda se oculta. Para confirmar una venta acordada por WhatsApp, edita manualmente las unidades de la talla correspondiente y guarda.
 
@@ -69,7 +69,7 @@ No añadas el prefijo `NEXT_PUBLIC_` a secretos. No se necesita un secreto de JW
 
 El proyecto está preparado; no crea recursos ni publica nada por sí mismo.
 
-1. Sube el código y `package-lock.json` a tu repositorio, excluyendo `.env`, `.qa`, `.next` y `node_modules`.
+1. Sube el código, `pnpm-lock.yaml` y `pnpm-workspace.yaml` a tu repositorio, excluyendo `.env`, `.qa`, `.next` y `node_modules`.
 2. Crea un proyecto Railway con un servicio PostgreSQL, un bucket y un servicio desde el repositorio de la aplicación.
 3. En las variables de la aplicación establece `DEMO_MODE=false`, `DATABASE_URL=${{Postgres.DATABASE_URL}}` (adapta el nombre del servicio) y `NEXT_PUBLIC_SITE_URL` con el dominio asignado.
 4. Conecta las credenciales del bucket a las variables de esta app:
@@ -83,7 +83,7 @@ El proyecto está preparado; no crea recursos ni publica nada por sí mismo.
    | `S3_SECRET_ACCESS_KEY` | `${{Images.SECRET_ACCESS_KEY}}` |
 
    Usa `S3_FORCE_PATH_STYLE=false` para los buckets actuales con virtual-hosted URLs, o `true` si la pestaña de credenciales exige path style. No utilices el nombre visible `RAILWAY_BUCKET_NAME` como nombre S3. El bucket permanece privado. [Documentación de buckets](https://docs.railway.com/storage-buckets).
-5. `railway.json` configura build `npm run build`, predeploy `npm run railway:migrate`, inicio `npm start` y healthcheck `/api/health`. Se conserva la instalación completa de dependencias de ejecución; no se requiere un volumen para Next. Las migraciones y `tsx` están disponibles en el servicio.
+5. `railway.json` configura build `npm run build`, predeploy `npm run railway:migrate`, inicio `npm start` y healthcheck `/api/health`. Railpack instala las dependencias con pnpm a partir de `pnpm-lock.yaml`; esos comandos solo ejecutan scripts, por lo que no dependen del gestor usado para instalar. Se conserva la instalación completa de dependencias de ejecución; no se requiere un volumen para Next. Las migraciones y `tsx` están disponibles en el servicio.
 6. Genera el dominio, configura su URL y despliega. El predeploy necesita acceso a PostgreSQL. No incluyas el seed ni el alta de usuarios en los reinicios automáticos.
 7. En una shell **dentro del servicio** (por ejemplo `railway ssh`), proporciona temporalmente `ADMIN_EMAIL` y `ADMIN_PASSWORD` y ejecuta `npx tsx scripts/create-admin.ts`. Retira la contraseña del entorno. El comando de Railway no depende de un archivo `.env`.
 8. Si quieres ejemplos en esa base, ejecuta una vez `npx tsx scripts/seed.ts` en el mismo servicio. Luego sustitúyelos desde el panel.
@@ -116,7 +116,7 @@ Todas las escrituras comprueban sesión y rol en el servidor, incluso invocadas 
 
 Las subidas admiten JPG/PNG/WebP estáticos de hasta 5 MB y 25 megapíxeles. Sharp inspecciona y recodifica a WebP, limita dimensiones y elimina metadatos; los nombres S3 son UUID. Un bloqueo de la prenda impide superar cinco imágenes con subidas concurrentes. Las fotos de prendas ocultas solo se firman para administradores. Una URL ya firmada puede seguir funcionando hasta su expiración de cinco minutos.
 
-La eliminación del registro y la cola de limpieza son transaccionales. Ejecuta **Limpiar archivos pendientes** en el panel o `npm run media:cleanup` localmente (`npx tsx scripts/cleanup-media.ts` en Railway) para retirar objetos de S3. Los intentos fallidos quedan en cola para reintentar. Las subidas interrumpidas dejan un registro recuperable que se puede limpiar después de una hora. La limpieza no elimina objetos todavía referenciados. Programa el comando de mantenimiento en Railway si necesitas limpieza periódica.
+La eliminación del registro y la cola de limpieza son transaccionales. Ejecuta **Limpiar archivos pendientes** en el panel o `pnpm media:cleanup` localmente (`npx tsx scripts/cleanup-media.ts` en Railway) para retirar objetos de S3. Los intentos fallidos quedan en cola para reintentar. Las subidas interrumpidas dejan un registro recuperable que se puede limpiar después de una hora. La limpieza no elimina objetos todavía referenciados. Programa el comando de mantenimiento en Railway si necesitas limpieza periódica.
 
 ## Reutilizar para otro cliente
 
