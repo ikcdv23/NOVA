@@ -1,5 +1,5 @@
-import { getPublicProducts } from '@/modules/catalog/repository';
-import { CartPage } from '@/modules/cart/cart-page';
+import { getPublicProducts } from '@/modules/catalog/service/catalog-service';
+import { CartPage } from '@/components/cart/cart-page';
 export const dynamic = 'force-dynamic';
 export const metadata = { title: 'Tu selección' };
 export default async function Cart() {

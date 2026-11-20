@@ -1,7 +1,7 @@
 import { StoreImage } from '@/components/store-image';
 import Link from 'next/link';
 import { money } from '@/config/store';
-import { collections, type Product } from './types';
+import { collections, type Product } from '@/modules/catalog/types';
 export function ProductCard({ product: p }: { product: Product }) {
   const stock = p.variants.reduce((s, v) => s + v.stock, 0);
   return (
