@@ -1,6 +1,12 @@
-# NOVA Archive
+# D Bamba
 
 Tienda de ropa masculina nueva y vintage, reutilizable como plantilla. Next.js 16, TypeScript y App Router; monolito modular con PostgreSQL y fotografías en un bucket S3-compatible. El carrito termina en una solicitud al WhatsApp **+34 695 056 234**. No se cobra ni se reserva stock automáticamente.
+
+## Identidad y frontend
+
+Marca y contacto en `src/config/store.ts`; firma compartida en `src/components/brand/`. La portada compone secciones de `src/components/home/`. `globals.css` importa los estilos por responsabilidad desde `src/styles/`.
+
+Dirección visual: fotografía de campaña, negro/blanco y tipografía de moda urbana, con Represent como referencia. La imagen `bamba-campaign.webp` se generó para esta propuesta; el catálogo de ejemplo y los contactos pendientes deben sustituirse antes de abrir la tienda. Se conservan rutas, módulos, SQL, sesiones y carritos existentes.
 
 ## Inicio rápido: demo sin servicios
 
@@ -136,12 +142,12 @@ La eliminación del registro y la cola de limpieza son transaccionales. Ejecuta 
 ## Reutilizar para otro cliente
 
 - Cambia marca, contacto y redes en `src/config/store.ts`. El correo `.example` y el enlace general de Instagram deben sustituirse.
-- Ajusta colores y tipografía en `src/app/globals.css`, y sustituye los textos de inicio, historia y contacto.
+- Ajusta colores y tipografía en `src/styles/tokens.css`, y sustituye los textos de inicio, historia y contacto.
 - Sustituye `public/images` y las prendas de `src/modules/catalog/demo.ts`, o administra contenido real con el panel. Los dos últimos ejemplos reutilizan imágenes del conjunto.
 - Configura una base y un bucket distintos por cliente. No reutilices usuarios o secretos.
 - Sustituye la nota demostrativa por la información real y añade los textos legales específicos del negocio antes de abrirlo al público.
 
-Las siete imágenes incluidas se generaron con IA para esta plantilla. Prompts y dirección visual en `docs/DESIGN.md`.
+Las siete imágenes de producto y la campaña de D Bamba se generaron con IA para esta propuesta. Prompts y dirección visual en `docs/DESIGN.md`.
 
 Pruebas reproducibles en [docs/TESTING.md](docs/TESTING.md) y resultados de esta entrega en [docs/VERIFICATION.md](docs/VERIFICATION.md).
 

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import '@fontsource/stix-two-text/400.css';
 import '@fontsource/dm-sans/400.css';
 import '@fontsource/dm-sans/500.css';
 import '@fontsource/dm-sans/600.css';
+import '@fontsource/dm-sans/700.css';
 import './globals.css';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';

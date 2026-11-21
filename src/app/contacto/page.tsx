@@ -7,7 +7,7 @@ export default function Contact() {
         <h1>
           Hablemos
           <br />
-          de esa prenda.
+          de ropa.
         </h1>
         <p className="lead">
           Una talla, una medida o una segunda opinión. Te ayudamos a encontrar lo que encaja
@@ -15,7 +15,7 @@ export default function Contact() {
         </p>
         <a
           className="button"
-          href={`https://wa.me/${store.whatsapp}?text=${encodeURIComponent('Hola, NOVA Archive. Me gustaría consultar sobre una prenda.')}`}
+          href={`https://wa.me/${store.whatsapp}?text=${encodeURIComponent(`Hola, ${store.name}. Me gustaría consultar sobre una prenda.`)}`}
           target="_blank"
           rel="noreferrer"
         >

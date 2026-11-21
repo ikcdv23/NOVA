@@ -46,7 +46,7 @@ export function ProductDetail({ product: p }: { product: Product }) {
       </div>
       <div className="product-info">
         <Link className="back-link" href="/catalogo">
-          ← Volver al archivo
+          ← Volver a la colección
         </Link>
         <h1>{p.name}</h1>
         <div className="detail-price">

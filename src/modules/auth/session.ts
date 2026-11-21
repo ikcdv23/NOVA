@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { isDemo } from '@/lib/db';
 import { findSession } from './service/auth-service';
+// Stable across visual rebrands; changing it would sign out existing sessions.
 export const cookieName = 'nova_session';
 
 export async function currentAdmin() {

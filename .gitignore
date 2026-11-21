@@ -9,3 +9,4 @@ playwright-report/
 .qa/
 .taste-skill/inspect/
 src/generated/
+.vercel/

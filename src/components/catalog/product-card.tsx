@@ -20,9 +20,6 @@ export function ProductCard({ product: p }: { product: Product }) {
         )}
         <span className="collection-tag">{collections[p.collection]}</span>
         {stock === 0 && <span className="sold-tag">Agotada</span>}
-        <span className="product-arrow" aria-hidden="true">
-          ↗
-        </span>
       </Link>
       <div className="product-meta">
         <div>
