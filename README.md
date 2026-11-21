@@ -2,6 +2,16 @@
 
 Tienda de ropa masculina nueva y vintage, reutilizable como plantilla. Next.js 16, TypeScript y App Router; monolito modular con PostgreSQL y fotografías en un bucket S3-compatible. El carrito termina en una solicitud al WhatsApp **+34 695 056 234**. No se cobra ni se reserva stock automáticamente.
 
+## Vercel y configuración del entorno
+
+El despliegue activo usa **Vercel + Neon**. La configuración, las variables que necesita la app, la exportación de entornos y los pasos pendientes de Amazon S3 están en [docs/VERCEL.md](docs/VERCEL.md).
+
+Usa **npm** y `package-lock.json` en este repositorio. `vercel.json` fija `npm ci` y `npm run build` para que Vercel use el mismo flujo que local y CI.
+
+Vercel despliega automáticamente solo `main`. Las previews están desactivadas en el proyecto; las ramas `dev`, `feature/*`, `fix/*` y `chore/*` se revisan con las comprobaciones de GitHub, sin generar despliegues automáticos.
+
+`.env` es la configuración local. Las exportaciones de Vercel se guardan en `.vercel/development.env`, `.vercel/preview.env` y `.vercel/production.env`, fuera de la carga automática de Next.js. Los archivos reales y `.vercel/` están excluidos de Git; `.env.example` y `.env.production.example` son las plantillas públicas.
+
 ## Inicio rápido: demo sin servicios
 
 Necesitas Node.js 22 o superior y npm. Desde la raíz:
@@ -43,7 +53,7 @@ ADMIN_EMAIL=tu-correo@tu-dominio.es
 ADMIN_PASSWORD=una-contrasena-larga-unica-de-al-menos-14-caracteres
 ```
 
-Ejecuta `npm run admin:create` y entra en `/admin/login`. El comando exige entre 14 y 128 caracteres, guarda un hash scrypt con sal aleatoria y rechaza correos existentes. Elimina `ADMIN_PASSWORD` del entorno después. No hay registro público ni recuperación por correo. Para revocar sesiones, elimina las filas de `sessions` del usuario; para recuperar acceso, crea otro administrador desde un entorno autorizado.
+Ejecuta `npm run admin:create` y entra en `/admin/login`. El comando admite entre 8 y 128 caracteres; se recomienda una contraseña única de al menos 14. Guarda un hash scrypt con sal aleatoria y rechaza correos existentes. Elimina `ADMIN_PASSWORD` del entorno después. No hay registro público ni recuperación por correo. Para revocar sesiones, elimina las filas de `sessions` del usuario; para recuperar acceso, crea otro administrador desde un entorno autorizado.
 
 Flujo de inventario: crear borrador → añadir hasta cinco fotos → elegir principal → publicar. Las tallas tienen existencias independientes. Ocultar retira la prenda del catálogo; eliminar requiere confirmación. Al borrar la última foto la prenda se oculta. Para confirmar una venta acordada por WhatsApp, edita manualmente las unidades de la talla correspondiente y guarda.
 
@@ -64,6 +74,8 @@ Flujo de inventario: crear borrador → añadir hasta cinco fotos → elegir pri
 | `PORT` | Puerto de escucha; Railway lo proporciona automáticamente. |
 
 No añadas el prefijo `NEXT_PUBLIC_` a secretos. No se necesita un secreto de JWT: la sesión es un token aleatorio de 256 bits, guardado solo como SHA-256 en PostgreSQL.
+
+`APP_URL` no se usa. Las variables adicionales `PG*`, `POSTGRES_*` y `NEON_*` que añade Neon pueden conservarse en Vercel; el acceso a datos de NOVA utiliza `DATABASE_URL`. `ADMIN_EMAIL` y `ADMIN_PASSWORD` se usan únicamente en el alta inicial, no para iniciar sesión ni como credenciales permanentes del despliegue.
 
 ## Desplegar en Railway
 
