@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { currentAdmin } from '@/modules/auth/session';
-import { LoginForm } from '@/modules/auth/login-form';
+import { LoginForm } from '@/components/auth/login-form';
 import { isDemo } from '@/lib/db';
 export const metadata = { title: 'Acceso privado', robots: { index: false, follow: false } };
 export const dynamic = 'force-dynamic';

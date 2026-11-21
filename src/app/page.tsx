@@ -1,7 +1,7 @@
 import { StoreImage } from '@/components/store-image';
 import Link from 'next/link';
-import { getPublicProducts } from '@/modules/catalog/repository';
-import { ProductCard } from '@/modules/catalog/product-card';
+import { getPublicProducts } from '@/modules/catalog/service/catalog-service';
+import { ProductCard } from '@/components/catalog/product-card';
 import { Reveal } from '@/components/reveal';
 export const dynamic = 'force-dynamic';
 export default async function Home() {

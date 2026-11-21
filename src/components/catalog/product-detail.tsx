@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/modules/cart/provider';
 import { money } from '@/config/store';
-import { collections, type Product } from './types';
+import { collections, type Product } from '@/modules/catalog/types';
 export function ProductDetail({ product: p }: { product: Product }) {
   const [photo, setPhoto] = useState(0),
     [size, setSize] = useState(

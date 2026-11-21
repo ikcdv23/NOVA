@@ -4,9 +4,9 @@ import { useActionState, useEffect, useRef, useState, useTransition } from 'reac
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { categories, conditions, type Product, type Variant } from '@/modules/catalog/types';
-import { saveProduct } from './actions';
-import { slugifyProductName, type ActionState } from './validation';
-import { uploadPhoto, changePhoto } from '@/modules/media/actions';
+import { saveProduct } from '@/modules/admin/actions/admin-actions';
+import { slugifyProductName, type ActionState } from '@/modules/admin/validation';
+import { uploadPhoto, changePhoto } from '@/modules/media/actions/media-actions';
 
 const measurementExamples: Record<string, string> = {
   Chaquetas: 'Pecho (de sisa a sisa) 56 cm · Hombros 48 cm · Largo 68 cm · Manga 62 cm',

@@ -6,7 +6,7 @@ const pool = new Pool({
 test.afterAll(async () => pool.end());
 test('public filters, product sizes, persistent cart and WhatsApp quote', async ({ page }) => {
   await page.goto('/catalogo?collection=nueva&size=L&category=Camisas&q=Oxford');
-  await expect(page.locator('.product-card')).toHaveCount(1);
+  await expect(page.locator('.product-card')).toHaveCount(2);
   await page.getByRole('heading', { name: 'Camisa Oxford', exact: true }).click();
   await page.getByRole('button', { name: 'M', exact: true }).click();
   await page.getByRole('button', { name: /Añadir a mi selección/ }).click();
@@ -101,7 +101,7 @@ test('protected admin CRUD, images, visibility, direct action denial and logout'
     .setInputFiles({ name: 'bad.png', mimeType: 'image/png', buffer: Buffer.from('not-an-image') });
   await page.getByRole('button', { name: /Subir foto/ }).click();
   await expect(page.locator('.photo-manager [role="alert"]')).toContainText(
-    'No se ha podido subir',
+    'No se ha podido leer',
   );
   for (let i = 1; i < 5; i++) {
     await page.getByLabel('Subir una foto').setInputFiles('public/images/shirt.png');

@@ -1,0 +1,101 @@
+// Reference map of the PostgreSQL schema already used by NOVA.
+// This file does not change the database or the application.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma-client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String    @id @db.Uuid
+  email        String    @unique
+  passwordHash String    @map("password_hash")
+  role         String    @default("admin")
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  sessions     Session[]
+
+  @@map("users")
+}
+
+model Session {
+  tokenHash String   @id @map("token_hash")
+  userId    String   @map("user_id") @db.Uuid
+  expiresAt DateTime @map("expires_at") @db.Timestamptz(6)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([expiresAt], map: "sessions_expiry")
+  @@map("sessions")
+}
+
+model LoginAttempt {
+  key         String   @id
+  attempts    Int
+  windowStart DateTime @map("window_start") @db.Timestamptz(6)
+
+  @@map("login_attempts")
+}
+
+model Product {
+  id           String    @id @db.Uuid
+  name         String
+  slug         String    @unique
+  collection   String
+  category     String
+  priceCents   Int       @map("price_cents")
+  measurements String
+  description  String
+  condition    String
+  published    Boolean   @default(false)
+  featured     Boolean   @default(false)
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime  @default(now()) @map("updated_at") @db.Timestamptz(6)
+  variants     Variant[]
+  images       Image[]
+
+  @@index([published, collection, category], map: "products_public")
+  @@map("products")
+}
+
+model Variant {
+  productId String  @map("product_id") @db.Uuid
+  size      String
+  stock     Int
+  position  Int     @default(0)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([productId, size])
+  @@map("variants")
+}
+
+model Image {
+  id        String  @id @db.Uuid
+  productId String  @map("product_id") @db.Uuid
+  objectKey String? @unique @map("object_key")
+  sampleUrl String? @map("sample_url")
+  alt       String
+  position  Int     @default(0)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId, position], map: "images_product")
+  @@map("images")
+}
+
+model MediaCleanup {
+  objectKey String   @id @map("object_key")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  notBefore DateTime @default(now()) @map("not_before") @db.Timestamptz(6)
+
+  @@map("media_cleanup")
+}
+
+// Created by the existing SQL migration runner, not by Prisma Migrate.
+model SchemaMigration {
+  name      String    @id
+  appliedAt DateTime? @default(now()) @map("applied_at") @db.Timestamptz(6)
+
+  @@map("schema_migrations")
+}

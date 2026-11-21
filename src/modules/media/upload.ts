@@ -3,8 +3,8 @@ import { randomUUID } from 'node:crypto';
 import type { PoolClient } from 'pg';
 import sharp from 'sharp';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
-import { db } from '@/lib/db';
 import { storage } from './storage';
+import * as repository from './repository/media-repository';
 
 export class PhotoUploadError extends Error {}
 
@@ -50,10 +50,7 @@ export async function storePreparedPhotos(
   for (const [offset, photo] of photos.entries()) {
     const id = randomUUID();
     const key = `products/${productId}/${id}.webp`;
-    await db.query(
-      "INSERT INTO media_cleanup(object_key,not_before) VALUES($1,now()+interval '1 hour') ON CONFLICT DO NOTHING",
-      [key],
-    );
+    await repository.scheduleUploadCleanup(key);
     await s3.send(
       new PutObjectCommand({
         Bucket: bucket,
@@ -64,10 +61,6 @@ export async function storePreparedPhotos(
       }),
       { abortSignal: AbortSignal.timeout(30000) },
     );
-    await client.query(
-      'INSERT INTO images(id,product_id,object_key,alt,position) VALUES($1,$2,$3,$4,$5)',
-      [id, productId, key, productName, startPosition + offset],
-    );
-    await client.query('DELETE FROM media_cleanup WHERE object_key=$1', [key]);
+    await repository.addImage(client, id, productId, key, productName, startPosition + offset);
   }
 }
