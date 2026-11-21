@@ -87,6 +87,16 @@ No copies una exportación completa a `.env`: puede incluir la conexión de prod
 
 ## Migraciones y despliegue
 
+### Solo se despliega main
+
+Las previews automáticas están desactivadas en la configuración del proyecto de Vercel (`previewDeploymentsDisabled=true`) y la rama de producción es `main`. Este ajuste ya está aplicado y no depende de fusionar esta PR.
+
+El repositorio también guarda la política en `vercel.json`: `git.deploymentEnabled` bloquea todas las ramas mediante `"**": false` y permite expresamente `"main": true`. En Vercel, una regla coincidente con valor `true` permite el despliegue aunque también coincida con la regla general.
+
+Los pushes y las pull requests de `dev`, `feature/*`, `fix/*`, `chore/*` u otras ramas no generan nuevas previews automáticas. Las comprobaciones de GitHub continúan. Al incorporar los cambios a `main`, Vercel publica producción. Los despliegues anteriores siguen en el historial; no se eliminan con esta configuración. La regla controla la automatización de Git, no una orden manual de despliegue por CLI o API.
+
+### Instalación y cambios de esquema
+
 Se usa `npm ci` con `package-lock.json` y `npm run build`, que también genera Prisma Client. Las migraciones SQL de `db/migrations/` siguen siendo la fuente de verdad: generar Prisma Client no crea tablas. No uses `prisma db push` ni Prisma Migrate para esta base.
 
 Las compilaciones no ejecutan migraciones, seed ni altas de administrador. Antes de publicar código que necesite un cambio de esquema, aplica únicamente las migraciones revisadas sobre la base elegida. Con una exportación válida de Production:
@@ -110,6 +120,7 @@ Para publicar código, usa una rama y una pull request según [.github/README.md
 - Neon: `neon-coral-engine` conectado a Production, Preview y Development.
 - `001_initial.sql` aplicada; el healthcheck del despliegue devolvió `{"status":"ok","mode":"live"}` usando acceso autenticado de Vercel.
 - `DEMO_MODE=false` en Production y Preview; `NEXT_PUBLIC_SITE_URL` configurada en Production.
+- Previews automáticas desactivadas en el proyecto; solo `main` despliega automáticamente. Las variables del entorno Preview se conservan.
 - AWS instalado en la cuenta, sin recurso S3 visible en Vercel y sin variables S3 asociadas a NOVA durante la revisión. Esto no descarta un bucket creado directamente en otra consola de AWS.
 - No se ha ejecutado el seed ni creado un administrador de producción durante esta configuración.
 - Vercel Authentication está activada con alcance `all_except_custom_domains`. Un despliegue correcto y un healthcheck autenticado no prueban acceso público sin sesión. Revisar Deployment Protection antes de abrir la tienda al público.

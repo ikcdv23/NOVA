@@ -8,6 +8,8 @@ El despliegue activo usa **Vercel + Neon**. La configuración, las variables que
 
 Usa **npm** y `package-lock.json` en este repositorio. `vercel.json` fija `npm ci` y `npm run build` para que Vercel use el mismo flujo que local y CI.
 
+Vercel despliega automáticamente solo `main`. Las previews están desactivadas en el proyecto; las ramas `dev`, `feature/*`, `fix/*` y `chore/*` se revisan con las comprobaciones de GitHub, sin generar despliegues automáticos.
+
 `.env` es la configuración local. Las exportaciones de Vercel se guardan en `.vercel/development.env`, `.vercel/preview.env` y `.vercel/production.env`, fuera de la carga automática de Next.js. Los archivos reales y `.vercel/` están excluidos de Git; `.env.example` y `.env.production.example` son las plantillas públicas.
 
 ## Inicio rápido: demo sin servicios
