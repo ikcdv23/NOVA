@@ -11,4 +11,3 @@ mi-modulo/
 ```
 
 Los archivos están vacíos a propósito.
-
