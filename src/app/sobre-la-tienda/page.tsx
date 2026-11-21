@@ -1,5 +1,6 @@
 import { StoreImage } from '@/components/store-image';
 import Link from 'next/link';
+import { store } from '@/config/store';
 export const metadata = { title: 'Nuestra historia' };
 export default function About() {
   return (
@@ -7,32 +8,33 @@ export default function About() {
       <div className="about-grid">
         <div>
           <h1>
-            El estilo
+            Tu forma
             <br />
-            no caduca.
+            de llevarlo.
           </h1>
           <p className="lead">
-            NOVA Archive es una forma de mirar la ropa: con curiosidad por su pasado y ganas de
-            darle un presente.
+            {store.name} reúne ropa masculina nueva y vintage. Prendas con carácter, elegidas para
+            que las hagas tuyas.
           </p>
           <p>
             Nos interesan las siluetas relajadas, las texturas que ganan con el tiempo y los básicos
-            que vuelven una y otra vez. Reunimos prendas nuevas y de segunda mano en un mismo
-            archivo, para que elijas con tu propio criterio.
+            que vuelven una y otra vez. Reunimos prendas nuevas y de segunda mano en un mismo lugar,
+            para que elijas con tu propio criterio.
           </p>
           <p>
             Cada ficha muestra la talla, las medidas y el estado de conservación. Si algo no está
             claro, lo hablamos. La compra empieza con una conversación, sin prisas.
           </p>
           <Link className="button" href="/catalogo">
-            Explorar el archivo ↗
+            Explorar la colección ↗
           </Link>
         </div>
         <StoreImage
-          src="/images/editorial.png"
-          alt="Chaqueta de piel y denim, el espíritu de NOVA Archive"
+          src="/images/bamba-campaign.webp"
+          alt="Editorial D Bamba: denim oscuro y ropa de corte relajado"
           width="800"
           height="1000"
+          sizes="(max-width: 767px) 1100px, 1500px"
         />
       </div>
       <section className="about-notes">
@@ -53,10 +55,11 @@ export default function About() {
         </div>
       </section>
       <section id="plantilla" className="template-note">
-        <h2>Una marca de ejemplo</h2>
+        <h2>Sobre estas imágenes</h2>
         <p>
-          NOVA Archive es una marca ficticia. Las prendas, los textos y las imágenes generadas con
-          IA forman parte de una plantilla demostrativa y deben sustituirse por el contenido real de
+          Las imágenes de campaña y las prendas del catálogo de demostración se han generado con IA
+          para presentar la dirección visual de {store.name}. No representan existencias reales. El
+          catálogo, las fotografías y los datos de contacto deben completarse con la información de
           la tienda antes de abrirla al público.
         </p>
       </section>
