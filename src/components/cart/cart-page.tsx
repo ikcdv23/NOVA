@@ -84,7 +84,7 @@ export function CartPage({ products }: { products: Product[] }) {
         })}
       </div>
       <aside className="cart-summary">
-        <h2>Tu próxima historia</h2>
+        <h2>Tu selección, lista.</h2>
         <div className="summary-total">
           <span>Total de prendas</span>
           <strong>{money(total)}</strong>

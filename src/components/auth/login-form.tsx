@@ -20,7 +20,7 @@ export function LoginForm() {
         />
       </label>
       <button className="button" disabled={pending}>
-        {pending ? 'Entrando…' : 'Entrar al archivo ↗'}
+        {pending ? 'Entrando…' : 'Entrar al panel ↗'}
       </button>
       {state.error && (
         <p className="error-text" role="alert">

@@ -10,6 +10,7 @@ type CartContextType = {
   notice: string;
 };
 const CartContext = createContext<CartContextType | null>(null);
+// Keep the storage key across visual rebrands so existing selections survive.
 const storageKey = 'nova-archive-cart-v1';
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]),

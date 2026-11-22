@@ -1,4 +1,16 @@
-# Dirección de NOVA Archive
+# Dirección de D Bamba
+
+Rebranding: moda urbana editorial con Represent como referencia de composición y compra. Nombre centralizado en `src/config/store.ts`; firma tipográfica propia, sin reutilizar logotipos o fotografías de la referencia.
+
+Dirección sorteada: **The name as a monument**, seed **1400661667**. Se conservan los colores negro/blanco/plata y DM Sans local. Se adapta el hero a una campaña a sangre y se sustituyen las secciones de retratos y galería vacía por prendas y colecciones: la tienda no tiene equipo fotografiado ni contenido para esas composiciones.
+
+Idea: el nombre D Bamba se convierte en el rótulo de su propia campaña. Interacción principal: explorar por colección y talla y preparar la selección para WhatsApp.
+
+Imagen nueva: `public/images/bamba-campaign.webp`, creada con ImageGen integrado. Prompt: fotografía panorámica de moda masculina, modelo adulto con denim lavado oscuro y camiseta blanca ante hormigón industrial; luz natural, tonos neutros, sin texto ni logos. Es una campaña demostrativa, no stock real. Las siete imágenes anteriores de producto se conservan sin recolorear las prendas.
+
+Verificación del rebranding: compilación y TypeScript correctos, 7/7 pruebas de lógica, navegación y compra en demo comprobadas en navegador. Inspector a 1440, 768 y 390 px: **0 FAIL**. Revisión visual final: diseño 8, usabilidad 8, creatividad 7, contenido 7 (7,7/10). Avisos aceptados: escalas adicionales para controles y precios; sin vídeo propio; el texto visible «Ropa masculina nueva y vintage» explica el nombre en portada. Capturas actuales en `preview-desktop.jpg` y `preview-mobile.jpg`.
+
+## Dirección anterior de NOVA (histórico)
 
 Inventario: nombre NOVA y su idea de renovación; Archive como selección; colecciones nueva/vintage; prendas únicas; talla y medidas antes de comprar; cuero con pátina; algodón Oxford; denim lavado; lana avena; conversación por WhatsApp; confirmación manual.
 
