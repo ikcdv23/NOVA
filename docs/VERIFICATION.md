@@ -1,5 +1,22 @@
 # Verificación de la entrega
 
+## Configuración de Vercel y entornos — 21 de noviembre de 2026
+
+Se vinculó `nova` con `neon-coral-engine`, se aplicó `001_initial.sql` y se volvió a desplegar la versión de `main` que ya estaba publicada. El healthcheck autenticado devolvió `{"status":"ok","mode":"live"}`. Esto no valida la subida de fotografías: AWS está instalado en la cuenta, pero no se encontró un bucket S3 vinculado ni variables S3 para NOVA. Tampoco se ha ejecutado el seed ni el alta de administrador sobre producción.
+
+Comprobaciones de la reorganización del repositorio:
+
+- `npm ci` completado con `package-lock.json` y generación de Prisma Client 7.10.1.
+- `npm test`: 7/7 correctas; `npm run typecheck` y `npm run build`: correctos.
+- Next.js carga únicamente `.env` en local, en modo demo. Las descargas de Development, Preview y Production se comprobaron en `.vercel/` y están excluidas de Git.
+- Inicio de la compilación local con `npm start -- --port 3047`: healthcheck `200` con `{"status":"ok","mode":"demo"}`; inicio, catálogo y ficha de ejemplo responden `200`. El proceso de comprobación se detuvo al terminar.
+- Las configuraciones locales anteriores se conservaron en `.vercel/env-backups/` antes de restablecer `.env` desde la plantilla local.
+- `npm audit --omit=dev` señala tres entradas de severidad alta en la cadena `prisma` → `@prisma/config` → `effect`, por un aviso de ReDoS de `effect`. La corrección automática propuesta baja Prisma a 6.12.0 y supone un cambio mayor; no se aplicó. Queda pendiente revisar una actualización compatible de esa cadena.
+
+La configuración actual y sus limitaciones, incluida Vercel Authentication, están en [VERCEL.md](VERCEL.md). Las comprobaciones siguientes son el registro histórico de la entrega inicial.
+
+## Entrega inicial — 14 de noviembre de 2026
+
 Comprobado el 14 de noviembre de 2026.
 
 - Compilación de producción: correcta, Next.js 16.4.6 con Webpack.

@@ -20,6 +20,10 @@
     "db:seed": "tsx --env-file=.env scripts/seed.ts",
     "admin:create": "tsx --env-file=.env scripts/create-admin.ts",
     "media:cleanup": "tsx --env-file=.env scripts/cleanup-media.ts",
+    "env:pull:development": "vercel env pull .vercel/development.env --environment development",
+    "env:pull:preview": "vercel env pull .vercel/preview.env --environment preview",
+    "env:pull:production": "vercel env pull .vercel/production.env --environment production",
+    "db:migrate:remote": "tsx scripts/migrate.ts",
     "railway:migrate": "tsx scripts/migrate.ts",
     "prisma:generate": "prisma generate"
   },
