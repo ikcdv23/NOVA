@@ -7,12 +7,20 @@ export const categories = [
   'Pantalones',
   'Accesorios',
 ] as const;
+
+export const gender = [
+  "Hombre",
+  "Mujer",
+  "Mixto"
+] as const;
+
 export const conditions = [
   'Nueva con etiquetas',
   'Como nueva',
   'Muy buen estado',
   'Buen estado',
 ] as const;
+
 export type ProductImage = { id: string; url: string; alt: string; position: number };
 export type Variant = { size: string; stock: number };
 export type Product = {
