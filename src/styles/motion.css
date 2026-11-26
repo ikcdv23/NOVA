@@ -1,0 +1,79 @@
+/* Entrance animations never hide content before observation; transform and opacity only. */
+@keyframes campaign-settle {
+  from {
+    transform: scale(1.045);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes name-arrive {
+  from {
+    transform: translateY(28px) scale(0.985);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes section-arrive {
+  from {
+    transform: translateY(20px);
+    opacity: 0.45;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes image-arrive {
+  from {
+    transform: translateY(16px) scale(0.985);
+    opacity: 0.55;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+.campaign-image {
+  animation: campaign-settle 2.4s var(--ease-out) both;
+}
+.campaign-content h1 {
+  animation: name-arrive 1s var(--ease-out) both;
+}
+.campaign-bottom {
+  animation: section-arrive 1s 0.1s var(--ease-out) both;
+}
+[data-reveal].in-view {
+  animation: section-arrive 0.8s var(--ease-out) both;
+}
+.product-card.in-view,
+.collection-panel.in-view {
+  animation-name: image-arrive;
+}
+.product-card.in-view:nth-child(2) {
+  animation-delay: 0.06s;
+}
+.product-card.in-view:nth-child(3) {
+  animation-delay: 0.12s;
+}
+.product-card.in-view:nth-child(4) {
+  animation-delay: 0.18s;
+}
+.collection-panel.in-view:nth-child(2) {
+  animation-delay: 0.1s;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

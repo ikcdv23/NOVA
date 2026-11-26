@@ -6,7 +6,7 @@ const pool = new Pool({
 test.afterAll(async () => pool.end());
 test('public filters, product sizes, persistent cart and WhatsApp quote', async ({ page }) => {
   await page.goto('/catalogo?collection=nueva&size=L&category=Camisas&q=Oxford');
-  await expect(page.locator('.product-card')).toHaveCount(1);
+  await expect(page.locator('.product-card')).toHaveCount(2);
   await page.getByRole('heading', { name: 'Camisa Oxford', exact: true }).click();
   await page.getByRole('button', { name: 'M', exact: true }).click();
   await page.getByRole('button', { name: /Añadir a mi selección/ }).click();
@@ -66,7 +66,7 @@ test('protected admin CRUD, images, visibility, direct action denial and logout'
   await expect(page).toHaveURL(/admin\/login/);
   await page.getByLabel('Correo electrónico').fill('admin@nova.test');
   await page.getByLabel('Contraseña').fill('NOVA-local-test-only-284!');
-  await page.getByRole('button', { name: /Entrar al archivo/ }).click();
+  await page.getByRole('button', { name: /Entrar al panel/ }).click();
   await expect(page.getByRole('heading', { name: 'El inventario' })).toBeVisible();
   const cookies = await page.context().cookies();
   const session = cookies.find((c) => c.name === 'nova_session')!;
@@ -101,7 +101,7 @@ test('protected admin CRUD, images, visibility, direct action denial and logout'
     .setInputFiles({ name: 'bad.png', mimeType: 'image/png', buffer: Buffer.from('not-an-image') });
   await page.getByRole('button', { name: /Subir foto/ }).click();
   await expect(page.locator('.photo-manager [role="alert"]')).toContainText(
-    'No se ha podido subir',
+    'No se ha podido leer',
   );
   for (let i = 1; i < 5; i++) {
     await page.getByLabel('Subir una foto').setInputFiles('public/images/shirt.png');
@@ -125,7 +125,7 @@ test('protected admin CRUD, images, visibility, direct action denial and logout'
   await row.getByRole('button', { name: 'Ocultar', exact: true }).click();
   await expect(row.getByRole('cell', { name: 'Oculta', exact: true })).toBeVisible();
   await publicPage.goto(`/producto/${slug}`);
-  await expect(publicPage.getByRole('heading', { name: 'Fuera del archivo' })).toBeVisible();
+  await expect(publicPage.getByRole('heading', { name: 'No está disponible' })).toBeVisible();
   // Replay a real mutation without authentication, even though its action ID is known.
   expect(captured).toBeDefined();
   const req = captured!;
