@@ -24,9 +24,9 @@ Las variables ya presentes en el proceso prevalecen sobre los archivos. En Verce
 En una copia nueva, desde la raíz:
 
 ```powershell
-npm ci
+pnpm install --frozen-lockfile
 Copy-Item .env.example .env
-npm run dev
+pnpm dev
 ```
 
 Con `DEMO_MODE=true`, la tienda usa prendas de ejemplo y deshabilita el acceso privado. Para usar PostgreSQL y MinIO locales, sigue el apartado «Modo real» del README y cambia `DEMO_MODE=false` en `.env`.
@@ -70,9 +70,9 @@ Move-Item -LiteralPath .env.local -Destination .vercel/development.env
 Una vez vinculado el proyecto, puedes exportar cada entorno por separado:
 
 ```powershell
-npm run env:pull:development
-npm run env:pull:preview
-npm run env:pull:production
+pnpm env:pull:development
+pnpm env:pull:preview
+pnpm env:pull:production
 ```
 
 Por ejemplo, el último ejecuta:
@@ -81,7 +81,7 @@ Por ejemplo, el último ejecuta:
 vercel env pull .vercel/production.env --environment production
 ```
 
-Si quieres sobrescribir una exportación existente sin preguntas, añade `-- --yes` al comando npm. Algunas variables Secret/Sensitive no permiten recuperar su valor; una exportación no garantiza una copia completa de todos los secretos. Tampoco es una copia de la base de datos ni de las fotografías. Los tokens OIDC exportados son temporales.
+Si quieres sobrescribir una exportación existente sin preguntas, añade `-- --yes` al comando pnpm. Algunas variables Secret/Sensitive no permiten recuperar su valor; una exportación no garantiza una copia completa de todos los secretos. Tampoco es una copia de la base de datos ni de las fotografías. Los tokens OIDC exportados son temporales.
 
 No copies una exportación completa a `.env`: puede incluir la conexión de producción, metadatos de un despliegue y tokens que no necesita el desarrollo local.
 
@@ -97,7 +97,7 @@ Los pushes y las pull requests de `dev`, `feature/*`, `fix/*`, `chore/*` u otras
 
 ### Instalación y cambios de esquema
 
-Se usa `npm ci` con `package-lock.json` y `npm run build`, que también genera Prisma Client. Las migraciones SQL de `db/migrations/` siguen siendo la fuente de verdad: generar Prisma Client no crea tablas. No uses `prisma db push` ni Prisma Migrate para esta base.
+Se usa `pnpm install --frozen-lockfile` con `pnpm-lock.yaml` y `pnpm run build`, que también genera Prisma Client. Las migraciones SQL de `db/migrations/` siguen siendo la fuente de verdad: generar Prisma Client no crea tablas. No uses `prisma db push` ni Prisma Migrate para esta base.
 
 Las compilaciones no ejecutan migraciones, seed ni altas de administrador. Antes de publicar código que necesite un cambio de esquema, aplica únicamente las migraciones revisadas sobre la base elegida. Con una exportación válida de Production:
 
@@ -107,7 +107,7 @@ npx tsx --env-file=.vercel/production.env scripts/migrate.ts
 
 Este comando **modifica la base de producción**. El ejecutor aplica los SQL pendientes en una transacción con bloqueo y registra los ya aplicados. No crea prendas ni administradores.
 
-En un entorno remoto que ya tenga las variables inyectadas se puede usar `npm run db:migrate:remote`. `railway:migrate` se conserva por compatibilidad con `railway.json`.
+En un entorno remoto que ya tenga las variables inyectadas se puede usar `pnpm db:migrate:remote`. `railway:migrate` se conserva por compatibilidad con `railway.json`.
 
 Para crear un administrador en producción, proporciona `ADMIN_EMAIL` y `ADMIN_PASSWORD` temporalmente al proceso y ejecuta `scripts/create-admin.ts` con la exportación de producción. Elimina la contraseña del proceso al terminar. No incluyas el alta ni el seed en cada compilación o reinicio.
 

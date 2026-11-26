@@ -7,9 +7,9 @@
     "node": ">=22"
   },
   "scripts": {
-    "postinstall": "npm run prisma:generate",
+    "postinstall": "prisma generate",
     "dev": "next dev --webpack",
-    "prebuild": "npm run prisma:generate",
+    "prebuild": "prisma generate",
     "build": "next build --webpack",
     "start": "next start -H 0.0.0.0",
     "typecheck": "tsc --noEmit",
