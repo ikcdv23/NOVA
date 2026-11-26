@@ -14,9 +14,11 @@ export const cartSchema = z
 
 export type CartItem = z.infer<typeof cartSchema>[number];
 
-export function quoteCart(items: CartItem[], products: Product[]) {
+// Calcula con los productos obtenidos en el servidor, nunca con precios del navegador.
+export function calculateCart(items: CartItem[], products: Product[]) {
+  const validatedItems = cartSchema.parse(items);
   const merged = new Map<string, CartItem>();
-  for (const item of items) {
+  for (const item of validatedItems) {
     const key = `${item.productId}:${item.size}`;
     merged.set(key, { ...item, quantity: item.quantity + (merged.get(key)?.quantity ?? 0) });
   }
@@ -39,7 +41,11 @@ export function quoteCart(items: CartItem[], products: Product[]) {
     };
   });
   const total = lines.reduce((sum, line) => sum + line.subtotal, 0);
-  
+  return { lines, total };
+}
+
+export function quoteCart(items: CartItem[], products: Product[]) {
+  const { lines, total } = calculateCart(items, products);
   const message = [
     `Hola, ${store.name}. Me interesan estas prendas:`,
     '',

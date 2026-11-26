@@ -1,5 +1,9 @@
 # Prisma en NOVA
 
+[← Documentación](../docs/README.md) · [Mapa de retos](../docs/MAPA-RETOS.md) · Referencia para los retos 06–08.
+
+> Esta guía describe la integración anterior. La transición a Prisma Migrate está en preparación: consultad [Pedidos y Prisma paso a paso](../docs/PEDIDOS-PRISMA-PASO-A-PASO.md) antes de aplicar migraciones. Los scripts existentes aún usan el migrador SQL anterior.
+
 Este directorio sirve para aprender y documentar el esquema de PostgreSQL de NOVA.
 
 ## Estado actual
@@ -42,12 +46,9 @@ npm run prisma:generate
 
 Para validar el esquema sin generar código usa `npx prisma validate`.
 
-## No ejecutar
+## Migraciones: transición en curso
 
-No ejecutes `prisma migrate dev`, `prisma migrate deploy` ni `prisma db push`.
-El proyecto ya tiene un sistema de
-migraciones SQL en `db/migrations/`, y mezclar ambos sistemas sin una
-migración planificada puede desalinear el historial de la base de datos.
+El proyecto tiene un sistema de migraciones SQL anterior en `db/migrations/` y se está preparando su transición a Prisma Migrate. No ejecutéis comandos de migración sobre una base existente sin revisar el entorno, su historial y el [procedimiento de transición](../docs/PEDIDOS-PRISMA-PASO-A-PASO.md#6-cómo-trabajar-en-adelante). Mezclar ambos sistemas sin preparar el baseline puede desalinear el historial.
 
 ## Migración gradual
 

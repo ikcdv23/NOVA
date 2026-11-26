@@ -1,5 +1,7 @@
 # Verificación de la entrega
 
+[← Documentación](README.md) · Resultados históricos de las fechas indicadas; no representan necesariamente el estado actual de los retos.
+
 ## Configuración de Vercel y entornos — 21 de noviembre de 2026
 
 Se vinculó `nova` con `neon-coral-engine`, se aplicó `001_initial.sql` y se volvió a desplegar la versión de `main` que ya estaba publicada. El healthcheck autenticado devolvió `{"status":"ok","mode":"live"}`. Esto no valida la subida de fotografías: AWS está instalado en la cuenta, pero no se encontró un bucket S3 vinculado ni variables S3 para NOVA. Tampoco se ha ejecutado el seed ni el alta de administrador sobre producción.

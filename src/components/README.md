@@ -1,5 +1,7 @@
 # Componentes
 
+[← Índice de documentación](../../docs/README.md) · Referencia transversal de interfaz.
+
 - `brand/`: firma de D Bamba, con nombre leído de `src/config/store.ts`.
 - `home/`: secciones visuales de portada; la página consulta el catálogo y las compone.
 - `catalog/`, `cart/`, `admin/`, `auth/`: presentación de cada funcionalidad.

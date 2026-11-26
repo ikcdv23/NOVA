@@ -1,5 +1,7 @@
 # Dirección de D Bamba
 
+[← Documentación](README.md) · Referencia transversal de diseño; no corresponde a un reto concreto.
+
 Rebranding: moda urbana editorial con Represent como referencia de composición y compra. Nombre centralizado en `src/config/store.ts`; firma tipográfica propia, sin reutilizar logotipos o fotografías de la referencia.
 
 Dirección sorteada: **The name as a monument**, seed **1400661667**. Se conservan los colores negro/blanco/plata y DM Sans local. Se adapta el hero a una campaña a sangre y se sustituyen las secciones de retratos y galería vacía por prendas y colecciones: la tienda no tiene equipo fotografiado ni contenido para esas composiciones.

@@ -1,5 +1,7 @@
 # Estados de una compra en NOVA
 
+[← Documentación](README.md) · [Mapa de retos](MAPA-RETOS.md) · **Reto 04**; también sirve para los retos 12 y 15–18.
+
 Este documento recoge una primera propuesta para el reto 04. Los estados de pedido, reserva y envío son ideas para debatir; todavía no están implementados ni aprobados como diseño definitivo.
 
 ## Las piezas de una compra

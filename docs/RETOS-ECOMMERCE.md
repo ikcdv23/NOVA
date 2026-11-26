@@ -1,5 +1,7 @@
 # NOVA: retos para construir y aprender ecommerce
 
+[← Documentación](README.md) · [Mapa de retos](MAPA-RETOS.md) · [Estados de una compra](ESTADOS-COMPRA.md) · [Pedidos y Prisma paso a paso](PEDIDOS-PRISMA-PASO-A-PASO.md)
+
 Este itinerario está pensado para doesarrollar NOVA de forma atomica. Cada reto termina en una evidencia comprobable. La idea es adquirir buenass practicas y tratar el proyecto como un desarrollo profesional simulando entornos de trabajo coolaborativo reales.
 
 **Estado:** plan para revisar y cargar en Syncro; las decisiones comerciales pendientes están identificadas más abajo. NOVA ya tiene productos, variantes con stock por talla, carrito y un panel. El carrito actual prepara una solicitud por WhatsApp; no cobra ni reserva el stock. La migración a Prisma está en la PR 7 y debe comprobarse contra la rama desde la que se empiece a trabajar.

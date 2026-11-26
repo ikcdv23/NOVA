@@ -1,5 +1,9 @@
 # Comprobaciones locales
 
+[← Documentación](README.md) · [Mapa de retos](MAPA-RETOS.md) · Referencia para los retos 07, 08 y 26.
+
+Para la prueba de integración de pedidos y sus requisitos, consultad [Pedidos y Prisma: pruebas](PEDIDOS-PRISMA-PASO-A-PASO.md#7-pruebas).
+
 `npm test` verifica filtros combinados, disponibilidad por talla, prendas ocultas, importes y mensaje WhatsApp, rechazo de cantidades inválidas, stock duplicado, validación de producto y hashes de contraseña.
 
 `npm run typecheck` comprueba TypeScript. `npm run build` crea la aplicación de producción.

@@ -1,5 +1,7 @@
 # Estilos
 
+[← Índice de documentación](../../docs/README.md) · Referencia transversal de diseño.
+
 `src/app/globals.css` solo ordena las importaciones:
 
 - `tokens.css`: colores, tipografía, espaciado y curvas compartidas.
