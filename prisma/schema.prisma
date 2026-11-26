@@ -1,5 +1,19 @@
-// Reference map of the PostgreSQL schema already used by NOVA.
-// This file does not change the database or the application.
+//  LEEME PRIMERO:
+//  Este archivo define TODAS las tablas de tu base de datos.
+//  Prisma lo usa para:
+//    1. Generar el cliente TypeScript (prisma generate)
+//    2. Crear las tablas en PostgreSQL (prisma migrate)
+//
+//  Conceptos clave que verás aquí:
+//    - @id         → Marca un campo como clave primaria
+//    - @default()  → Valor por defecto al crear un registro
+//    - @unique     → No puede haber dos registros con el mismo valor
+//    - @relation() → Define cómo dos modelos se conectan
+//    - onDelete: Cascade → Si borras el padre, se borra el hijo
+//    - @@unique()  → Restricción de unicidad compuesta (múltiples campos)
+//    - @@id()      → Clave primaria compuesta (múltiples campos)
+//    - Enum        → Lista fija de valores permitidos
+//    - Float vs Int → Float para decimales, Int para enteros
 
 generator client {
   provider = "prisma-client"
@@ -45,6 +59,7 @@ model Product {
   slug         String    @unique
   collection   String
   category     String
+  gender       Gender    @default(MIX)
   priceCents   Int       @map("price_cents")
   measurements String
   description  String
@@ -98,4 +113,10 @@ model SchemaMigration {
   appliedAt DateTime? @default(now()) @map("applied_at") @db.Timestamptz(6)
 
   @@map("schema_migrations")
+}
+
+enum Gender {
+ MALE
+ FEMALE
+ MIX
 }

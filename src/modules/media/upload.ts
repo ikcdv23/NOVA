@@ -1,6 +1,6 @@
 import 'server-only';
 import { randomUUID } from 'node:crypto';
-import type { PoolClient } from 'pg';
+import type { Prisma } from '@/generated/prisma-client/client';
 import sharp from 'sharp';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import { storage } from './storage';
@@ -39,7 +39,7 @@ export async function preparePhotos(entries: FormDataEntryValue[], limit = 5) {
 }
 
 export async function storePreparedPhotos(
-  client: PoolClient,
+  client: Prisma.TransactionClient,
   productId: string,
   productName: string,
   photos: PreparedPhoto[],

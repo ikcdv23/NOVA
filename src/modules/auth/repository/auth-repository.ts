@@ -1,22 +1,23 @@
 import 'server-only';
-import { db } from '@/lib/db';
+import { prisma } from '@/lib/prisma';
 
 export async function recordLoginAttempt(key: string) {
-  const { rows } = await db.query<{ attempts: number }>(
-    `INSERT INTO login_attempts(key,attempts,window_start) VALUES($1,1,now())
-     ON CONFLICT(key) DO UPDATE SET attempts=CASE WHEN login_attempts.window_start<now()-interval '15 minutes' THEN 1 ELSE login_attempts.attempts+1 END,
-     window_start=CASE WHEN login_attempts.window_start<now()-interval '15 minutes' THEN now() ELSE login_attempts.window_start END RETURNING attempts`,
-    [key],
-  );
+  // Una única consulta atómica evita perder intentos de inicio de sesión simultáneos.
+  const rows = await prisma.$queryRaw<{ attempts: number }[]>`
+    INSERT INTO login_attempts(key, attempts, window_start) VALUES (${key}, 1, now())
+    ON CONFLICT (key) DO UPDATE SET
+      attempts = CASE WHEN login_attempts.window_start < now() - interval '15 minutes' THEN 1 ELSE login_attempts.attempts + 1 END,
+      window_start = CASE WHEN login_attempts.window_start < now() - interval '15 minutes' THEN now() ELSE login_attempts.window_start END
+    RETURNING attempts`;
   return rows[0].attempts;
 }
 
 export async function findAdminByEmail(email: string) {
-  const { rows } = await db.query<{ id: string; password_hash: string }>(
-    'SELECT id,password_hash FROM users WHERE email=$1 AND role=$2',
-    [email, 'admin'],
-  );
-  return rows[0];
+  const user = await prisma.user.findFirst({
+    where: { email, role: 'admin' },
+    select: { id: true, passwordHash: true },
+  });
+  return user ? { id: user.id, password_hash: user.passwordHash } : undefined;
 }
 
 export async function createSession(
@@ -25,26 +26,26 @@ export async function createSession(
   expiresAt: Date,
   attemptKey: string,
 ) {
-  await db.query('INSERT INTO sessions(token_hash,user_id,expires_at) VALUES($1,$2,$3)', [
-    tokenHash,
-    userId,
-    expiresAt,
-  ]);
-  await db.query("DELETE FROM login_attempts WHERE key=$1 OR window_start<now()-interval '1 day'", [
-    attemptKey,
-  ]);
-  await db.query('DELETE FROM sessions WHERE expires_at<=now()');
+  await prisma.session.create({ data: { tokenHash, userId, expiresAt } });
+  await prisma.loginAttempt.deleteMany({
+    where: {
+      OR: [
+        { key: attemptKey },
+        { windowStart: { lt: new Date(Date.now() - 24 * 60 * 60 * 1000) } },
+      ],
+    },
+  });
+  await prisma.session.deleteMany({ where: { expiresAt: { lte: new Date() } } });
 }
 
 export async function deleteSession(tokenHash: string) {
-  await db.query('DELETE FROM sessions WHERE token_hash=$1', [tokenHash]);
+  await prisma.session.deleteMany({ where: { tokenHash } });
 }
 
 export async function findSession(tokenHash: string) {
-  const { rows } = await db.query<{ id: string; email: string }>(
-    `SELECT u.id,u.email FROM sessions s JOIN users u ON u.id=s.user_id
-     WHERE s.token_hash=$1 AND s.expires_at>now() AND u.role='admin'`,
-    [tokenHash],
-  );
-  return rows[0] ?? null;
+  const session = await prisma.session.findFirst({
+    where: { tokenHash, expiresAt: { gt: new Date() }, user: { role: 'admin' } },
+    select: { user: { select: { id: true, email: true } } },
+  });
+  return session?.user ?? null;
 }

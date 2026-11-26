@@ -73,7 +73,11 @@ export async function saveProduct(
         error: 'La dirección web ya pertenece a otra prenda.',
         fieldErrors: { slug: ['Prueba una dirección diferente.'] },
       };
-    if (error instanceof Error && 'code' in error && error.code === '23505')
+    if (
+      error instanceof Error &&
+      'code' in error &&
+      (error.code === '23505' || error.code === 'P2002')
+    )
       return {
         error: 'La dirección web ya pertenece a otra prenda.',
         fieldErrors: { slug: ['Prueba una dirección diferente.'] },

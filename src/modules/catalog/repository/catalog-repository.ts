@@ -1,20 +1,57 @@
 import 'server-only';
-import { db } from '@/lib/db';
+import { prisma } from '@/lib/prisma';
+import type { Prisma } from '@/generated/prisma-client/client';
 import type { Product } from '../types';
 
-const select = `SELECT p.id, p.name, p.slug, p.collection, p.category, p.price_cents AS "priceCents",
- p.description, p.condition, p.measurements, p.published, p.featured,
- COALESCE((SELECT json_agg(json_build_object('size',v.size,'stock',v.stock) ORDER BY v.position) FROM variants v WHERE v.product_id=p.id),'[]') AS variants,
- COALESCE((SELECT json_agg(json_build_object('id',i.id,'url',COALESCE(i.sample_url,'/media/'||i.id),'alt',i.alt,'position',i.position) ORDER BY i.position,i.id) FROM images i WHERE i.product_id=p.id),'[]') AS images
- FROM products p`;
+// Seleccionamos solo lo que necesita el catálogo y ordenamos sus relaciones.
+const select = {
+  id: true,
+  name: true,
+  slug: true,
+  collection: true,
+  category: true,
+  priceCents: true,
+  description: true,
+  condition: true,
+  measurements: true,
+  published: true,
+  featured: true,
+  variants: { select: { size: true, stock: true }, orderBy: { position: 'asc' } },
+  images: {
+    select: { id: true, sampleUrl: true, alt: true, position: true },
+    orderBy: [{ position: 'asc' }, { id: 'asc' }],
+  },
+} satisfies Prisma.ProductSelect;
+
+type CatalogRow = NonNullable<Awaited<ReturnType<typeof findRow>>>;
+function findRow(id: string) {
+  return prisma.product.findUnique({ where: { id }, select });
+}
+
+function toProduct(row: CatalogRow): Product {
+  return {
+    ...row,
+    collection: row.collection as Product['collection'],
+    images: row.images.map(({ sampleUrl, ...image }) => ({
+      ...image,
+      url: sampleUrl ?? `/media/${image.id}`,
+    })),
+  };
+}
 
 export async function findPublishedProducts(): Promise<Product[]> {
-  return (await db.query<Product>(`${select} WHERE p.published=true ORDER BY p.created_at DESC`))
-    .rows;
+  const rows = await prisma.product.findMany({
+    where: { published: true },
+    orderBy: { createdAt: 'desc' },
+    select,
+  });
+  return rows.map(toProduct);
 }
 export async function findAdminProducts(): Promise<Product[]> {
-  return (await db.query<Product>(`${select} ORDER BY p.created_at DESC`)).rows;
+  const rows = await prisma.product.findMany({ orderBy: { createdAt: 'desc' }, select });
+  return rows.map(toProduct);
 }
 export async function findAdminProduct(id: string): Promise<Product | undefined> {
-  return (await db.query<Product>(`${select} WHERE p.id=$1`, [id])).rows[0];
+  const row = await findRow(id);
+  return row ? toProduct(row) : undefined;
 }

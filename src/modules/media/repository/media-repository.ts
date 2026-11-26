@@ -1,80 +1,80 @@
 import 'server-only';
-import type { PoolClient } from 'pg';
-import { db } from '@/lib/db';
+import type { Prisma } from '@/generated/prisma-client/client';
+import { prisma } from '@/lib/prisma';
 
-export async function lockProduct(client: PoolClient, id: string) {
-  const { rows } = await client.query<{ name: string }>(
-    'SELECT name FROM products WHERE id=$1 FOR UPDATE',
-    [id],
-  );
+type Transaction = Prisma.TransactionClient;
+
+export async function lockProduct(tx: Transaction, id: string) {
+  const rows = await tx.$queryRaw<
+    { name: string }[]
+  >`SELECT name FROM products WHERE id = ${id}::uuid FOR UPDATE`;
   return rows[0];
 }
 
-export async function listImages(client: PoolClient, productId: string) {
-  const { rows } = await client.query<{ id: string; object_key: string | null }>(
-    'SELECT id,object_key FROM images WHERE product_id=$1 ORDER BY position,id',
-    [productId],
-  );
-  return rows;
+export async function listImages(tx: Transaction, productId: string) {
+  const images = await tx.image.findMany({
+    where: { productId },
+    select: { id: true, objectKey: true },
+    orderBy: [{ position: 'asc' }, { id: 'asc' }],
+  });
+  return images.map(({ id, objectKey }) => ({ id, object_key: objectKey }));
 }
 
 export async function deleteImage(
-  client: PoolClient,
+  tx: Transaction,
   image: { id: string; object_key: string | null },
   productId: string,
   last: boolean,
 ) {
   if (image.object_key)
-    await client.query('INSERT INTO media_cleanup(object_key) VALUES($1) ON CONFLICT DO NOTHING', [
-      image.object_key,
-    ]);
-  await client.query('DELETE FROM images WHERE id=$1', [image.id]);
-  if (last) await client.query('UPDATE products SET published=false WHERE id=$1', [productId]);
+    await tx.mediaCleanup.createMany({
+      data: [{ objectKey: image.object_key }],
+      skipDuplicates: true,
+    });
+  await tx.image.deleteMany({ where: { id: image.id } });
+  if (last) await tx.product.updateMany({ where: { id: productId }, data: { published: false } });
 }
 
-export async function reorderImages(client: PoolClient, ids: string[]) {
+export async function reorderImages(tx: Transaction, ids: string[]) {
   for (const [position, id] of ids.entries())
-    await client.query('UPDATE images SET position=$2 WHERE id=$1', [id, position]);
+    await tx.image.updateMany({ where: { id }, data: { position } });
 }
 
 export async function findImage(id: string) {
-  const { rows } = await db.query<{ object_key: string | null; published: boolean }>(
-    'SELECT i.object_key,p.published FROM images i JOIN products p ON p.id=i.product_id WHERE i.id=$1',
-    [id],
-  );
-  return rows[0];
+  const image = await prisma.image.findUnique({
+    where: { id },
+    select: { objectKey: true, product: { select: { published: true } } },
+  });
+  return image ? { object_key: image.objectKey, published: image.product.published } : undefined;
 }
 
 export async function pendingCleanup() {
-  const { rows } = await db.query<{
-    object_key: string;
-  }>(`SELECT q.object_key FROM media_cleanup q WHERE q.not_before<=now()
-    AND NOT EXISTS (SELECT 1 FROM images i WHERE i.object_key=q.object_key) ORDER BY q.created_at LIMIT 100`);
-  return rows;
+  // La consulta conserva la comprobación de que ninguna imagen usa la clave.
+  return prisma.$queryRaw<
+    { object_key: string }[]
+  >`SELECT q.object_key FROM media_cleanup q WHERE q.not_before <= now()
+    AND NOT EXISTS (SELECT 1 FROM images i WHERE i.object_key = q.object_key) ORDER BY q.created_at LIMIT 100`;
 }
 
 export async function removeCleanup(key: string) {
-  await db.query('DELETE FROM media_cleanup WHERE object_key=$1', [key]);
+  await prisma.mediaCleanup.deleteMany({ where: { objectKey: key } });
 }
 
 export async function scheduleUploadCleanup(key: string) {
-  await db.query(
-    "INSERT INTO media_cleanup(object_key,not_before) VALUES($1,now()+interval '1 hour') ON CONFLICT DO NOTHING",
-    [key],
-  );
+  await prisma.mediaCleanup.createMany({
+    data: [{ objectKey: key, notBefore: new Date(Date.now() + 60 * 60 * 1000) }],
+    skipDuplicates: true,
+  });
 }
 
 export async function addImage(
-  client: PoolClient,
+  tx: Transaction,
   id: string,
   productId: string,
   key: string,
   name: string,
   position: number,
 ) {
-  await client.query(
-    'INSERT INTO images(id,product_id,object_key,alt,position) VALUES($1,$2,$3,$4,$5)',
-    [id, productId, key, name, position],
-  );
-  await client.query('DELETE FROM media_cleanup WHERE object_key=$1', [key]);
+  await tx.image.create({ data: { id, productId, objectKey: key, alt: name, position } });
+  await tx.mediaCleanup.deleteMany({ where: { objectKey: key } });
 }

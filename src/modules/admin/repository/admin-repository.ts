@@ -1,77 +1,78 @@
 import 'server-only';
-import type { PoolClient } from 'pg';
 import type { z } from 'zod';
+import type { Prisma } from '@/generated/prisma-client/client';
 import type { productSchema } from '../validation';
 
 type ProductInput = z.output<typeof productSchema>;
+type Transaction = Prisma.TransactionClient;
 
-export async function lockProduct(db: PoolClient, id: string) {
-  return (await db.query('SELECT id FROM products WHERE id=$1 FOR UPDATE', [id])).rowCount;
+// El bloqueo protege las comprobaciones y los cambios hasta terminar la transacción.
+export async function lockProduct(tx: Transaction, id: string) {
+  const rows = await tx.$queryRaw<
+    { id: string }[]
+  >`SELECT id FROM products WHERE id = ${id}::uuid FOR UPDATE`;
+  return rows.length;
 }
 
-export async function countImages(db: PoolClient, id: string) {
-  const result = await db.query('SELECT id FROM images WHERE product_id=$1 ORDER BY position,id', [
-    id,
-  ]);
-  return result.rows.length;
+export function countImages(tx: Transaction, id: string) {
+  return tx.image.count({ where: { productId: id } });
 }
 
-export async function slugExists(db: PoolClient, slug: string, id: string) {
-  return (
-    (await db.query('SELECT id FROM products WHERE slug=$1 AND id<>$2', [slug, id])).rowCount !== 0
-  );
+export async function slugExists(tx: Transaction, slug: string, id: string) {
+  return (await tx.product.count({ where: { slug, id: { not: id } } })) > 0;
 }
 
 export async function saveProduct(
-  db: PoolClient,
+  tx: Transaction,
   id: string,
   product: ProductInput,
   slug: string,
   editing: boolean,
 ) {
-  const values = [
-    id,
-    product.name,
+  const data = {
+    name: product.name,
     slug,
-    product.collection,
-    product.category,
-    product.price,
-    product.measurements,
-    product.description,
-    product.condition,
-    product.published,
-    product.featured,
-  ];
+    collection: product.collection,
+    category: product.category,
+    priceCents: product.price,
+    measurements: product.measurements,
+    description: product.description,
+    condition: product.condition,
+    published: product.published,
+    featured: product.featured,
+  };
   if (editing) {
-    await db.query(
-      `UPDATE products SET name=$2,slug=$3,collection=$4,category=$5,price_cents=$6,measurements=$7,description=$8,condition=$9,published=$10,featured=$11,updated_at=now() WHERE id=$1`,
-      values,
-    );
+    await tx.product.update({
+      where: { id },
+      data: { ...data, updatedAt: new Date() },
+      select: { id: true },
+    });
   } else {
-    await db.query(
-      `INSERT INTO products(id,name,slug,collection,category,price_cents,measurements,description,condition,published,featured) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
-      values,
-    );
+    await tx.product.create({ data: { id, ...data }, select: { id: true } });
   }
-  await db.query('DELETE FROM variants WHERE product_id=$1', [id]);
-  for (const [position, variant] of product.variants.entries()) {
-    await db.query('INSERT INTO variants(product_id,size,stock,position) VALUES($1,$2,$3,$4)', [
-      id,
-      variant.size,
-      variant.stock,
+
+  // Conservamos la estrategia anterior: reemplazar todas las variantes.
+  await tx.variant.deleteMany({ where: { productId: id } });
+  await tx.variant.createMany({
+    data: product.variants.map((variant, position) => ({
+      productId: id,
+      size: variant.size,
+      stock: variant.stock,
       position,
-    ]);
-  }
+    })),
+  });
 }
 
-export async function setVisibility(db: PoolClient, id: string, published: boolean) {
-  await db.query('UPDATE products SET published=$2,updated_at=now() WHERE id=$1', [id, published]);
+export async function setVisibility(tx: Transaction, id: string, published: boolean) {
+  await tx.product.updateMany({ where: { id }, data: { published, updatedAt: new Date() } });
 }
 
-export async function deleteProduct(db: PoolClient, id: string) {
-  await db.query(
-    'INSERT INTO media_cleanup(object_key) SELECT object_key FROM images WHERE product_id=$1 AND object_key IS NOT NULL ON CONFLICT DO NOTHING',
-    [id],
-  );
-  await db.query('DELETE FROM products WHERE id=$1', [id]);
+export async function deleteProduct(tx: Transaction, id: string) {
+  const images = await tx.image.findMany({
+    where: { productId: id, objectKey: { not: null } },
+    select: { objectKey: true },
+  });
+  const keys = images.flatMap(({ objectKey }) => (objectKey === null ? [] : [{ objectKey }]));
+  if (keys.length) await tx.mediaCleanup.createMany({ data: keys, skipDuplicates: true });
+  await tx.product.deleteMany({ where: { id } });
 }
