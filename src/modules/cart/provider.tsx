@@ -12,6 +12,7 @@ type CartContextType = {
 const CartContext = createContext<CartContextType | null>(null);
 // Keep the storage key across visual rebrands so existing selections survive.
 const storageKey = 'nova-archive-cart-v1';
+
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]),
     [ready, setReady] = useState(false),
@@ -35,6 +36,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       return () => clearTimeout(t);
     }
   }, [notice]);
+
   const add = (productId: string, size: string, stock: number) => {
     if (stock < 1) return;
     const existing = items.find((i) => i.productId === productId && i.size === size);
@@ -42,10 +44,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
       setNotice('Ya tienes todas las unidades disponibles de esta talla.');
       return;
     }
+
     if (!existing && items.length >= 50) {
       setNotice('La selección admite un máximo de 50 prendas.');
       return;
     }
+    
     setItems((prev) => {
       const row = prev.find((i) => i.productId === productId && i.size === size);
       return row
@@ -54,8 +58,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
     setNotice('Prenda añadida a tu selección.');
   };
+
   const remove = (id: string, size: string) =>
     setItems((prev) => prev.filter((i) => !(i.productId === id && i.size === size)));
+
   const update = (id: string, size: string, quantity: number) => {
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 99) return;
     setItems((prev) =>

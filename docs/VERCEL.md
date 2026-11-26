@@ -1,5 +1,9 @@
 # NOVA en Vercel
 
+[← Documentación](README.md) · [Mapa de retos](MAPA-RETOS.md) · Referencia transversal para los retos 15, 22, 25 y 27.
+
+> La transición a Prisma Migrate está en preparación; la sección de migraciones describe el despliegue SQL anterior. Consultad el [estado de la transición](PEDIDOS-PRISMA-PASO-A-PASO.md#6-cómo-trabajar-en-adelante) antes de modificar un entorno.
+
 ## Archivos y entornos
 
 | Archivo | Para qué sirve | ¿Se sube a Git? |

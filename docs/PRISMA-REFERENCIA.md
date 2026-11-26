@@ -1,5 +1,7 @@
 # Prisma: referencia para NOVA
 
+[← Documentación](README.md) · [Mapa de retos](MAPA-RETOS.md) · Referencia para los retos 06–08, 13 y 31.
+
 Esta guía explica las ideas de Prisma Client para consultar y modificar datos. Está pensada para Prisma 7 y para los modelos actuales de NOVA.
 
 ## Las piezas

@@ -1,5 +1,9 @@
 # Migraciones de bases de datos para principiantes
 
+[← Documentación](README.md) · [Mapa de retos](MAPA-RETOS.md) · **Reto 06**; referencia también para el reto 27.
+
+> **Actualización en curso:** se está preparando la transición de NOVA a Prisma Migrate. El documento describe el sistema SQL anterior; para el estado nuevo y los pasos de transición consultad [Pedidos y Prisma Migrate paso a paso](./PEDIDOS-PRISMA-PASO-A-PASO.md). No se ha migrado ninguna base remota.
+
 ## 1. ¿Qué es una migración?
 
 Una migración es un cambio organizado y registrado en la estructura de una base de datos. Puede crear una tabla, añadir una columna, crear un índice o modificar una restricción. Algunas también transforman datos que ya existen.

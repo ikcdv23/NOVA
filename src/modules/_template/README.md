@@ -1,5 +1,7 @@
 # Plantilla de módulo
 
+[← Índice de documentación](../../../docs/README.md) · Referencia transversal para organizar módulos, incluido el reto 07.
+
 Duplica esta carpeta y cámbiale el nombre cuando crees una funcionalidad nueva.
 
 ```text

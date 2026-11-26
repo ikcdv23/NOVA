@@ -1,5 +1,7 @@
 # D Bamba
 
+📚 **Documentación y aprendizaje:** [índice de NOVA](docs/README.md) · [mapa de retos de Syncro](docs/MAPA-RETOS.md).
+
 Tienda de ropa masculina nueva y vintage, reutilizable como plantilla. Next.js 16, TypeScript y App Router; monolito modular con PostgreSQL y fotografías en un bucket S3-compatible. El carrito termina en una solicitud al WhatsApp **+34 695 056 234**. No se cobra ni se reserva stock automáticamente.
 
 ## Identidad y frontend
@@ -125,6 +127,8 @@ scripts/                 Migración, seed, creación de admin y mantenimiento
 tests/                   Pruebas de lógica y recorridos de navegador
 ```
 
+En el trabajo en curso, `src/modules/orders/` prepara el repositorio de pedidos y `prisma/migrations/` el historial para la transición a Prisma Migrate. Consultad [Pedidos y Prisma paso a paso](docs/PEDIDOS-PRISMA-PASO-A-PASO.md) para conocer su alcance y estado.
+
 Las páginas y layouts permanecen en `src/app/` por las convenciones de Next.js;
 los componentes visuales están en `src/components/`. Cada funcionalidad se
 organiza en `src/modules/` con las capas que necesita:
@@ -135,9 +139,11 @@ organiza en `src/modules/` con las capas que necesita:
 
 Las páginas de catálogo leen directamente del servicio: no necesitan una acción
 para mostrar datos. El carrito vive en el navegador y consulta el catálogo antes
-de preparar WhatsApp, por lo que no tiene repositorio propio. La app usa SQL con
-`pg`; Prisma Client está configurado para una migración gradual. Las migraciones
-SQL de `db/migrations/` siguen siendo la fuente de verdad de la base de datos.
+de preparar WhatsApp, por lo que no tiene repositorio propio. Los repositorios de
+catálogo, administración, autenticación y medios usan Prisma Client; otros
+scripts siguen usando `pg`. Las migraciones SQL de `db/migrations/` se siguen
+ejecutando con el sistema anterior mientras se prepara la transición a Prisma
+Migrate. Revisad el [procedimiento de transición](docs/PEDIDOS-PRISMA-PASO-A-PASO.md#6-cómo-trabajar-en-adelante) antes de cambiar una base existente.
 
 El stock vive en `variants`, por prenda y talla. El precio es un entero de céntimos. El catálogo usa exclusivamente prendas publicadas; las lecturas son dinámicas y las mutaciones invalidan las rutas. El navegador guarda solo identificadores, tallas y cantidades: el servidor vuelve a comprobar publicación, tallas, precios y disponibilidad al preparar WhatsApp. No escribe pedidos, no reserva unidades y nunca decrementa stock.
 
