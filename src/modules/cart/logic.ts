@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { money, store } from '@/config/store';
 import type { Product } from '@/modules/catalog/types';
+
 export const cartSchema = z
   .array(
     z.object({
@@ -10,7 +11,9 @@ export const cartSchema = z
     }),
   )
   .max(50);
+
 export type CartItem = z.infer<typeof cartSchema>[number];
+
 export function quoteCart(items: CartItem[], products: Product[]) {
   const merged = new Map<string, CartItem>();
   for (const item of items) {
@@ -36,6 +39,7 @@ export function quoteCart(items: CartItem[], products: Product[]) {
     };
   });
   const total = lines.reduce((sum, line) => sum + line.subtotal, 0);
+  
   const message = [
     `Hola, ${store.name}. Me interesan estas prendas:`,
     '',
@@ -48,6 +52,7 @@ export function quoteCart(items: CartItem[], products: Product[]) {
     '',
     '¿Podéis confirmarme la disponibilidad y el importe final, incluidos los gastos de envío si corresponden? Entiendo que esta solicitud no reserva las prendas.',
   ].join('\n');
+  
   return {
     lines,
     total,
