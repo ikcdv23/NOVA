@@ -12,8 +12,8 @@ services:
       interval: 5s
       retries: 10
   minio:
-# MinIO's community images were removed from Docker Hub; Silo is the maintained fork.
-    image: minio/minio:latest
+    # MinIO's community images were removed from Docker Hub; Silo is the maintained fork.
+    image: pgsty/silo:RELEASE.2026-11-12T00-00-00Z
     command: server /data --console-address :9001
     environment:
       MINIO_ROOT_USER: nova_local
