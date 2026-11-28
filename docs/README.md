@@ -14,6 +14,7 @@ Esta es la puerta de entrada para encontrar documentación del proyecto y relaci
 | --- | --- | --- |
 | Entender carrito, pedidos, pagos y reservas | [Estados de una compra](ESTADOS-COMPRA.md) | 03, 04, 12 y 15–18 |
 | Seguir el trabajo preparado de pedidos | [Pedidos y Prisma paso a paso](PEDIDOS-PRISMA-PASO-A-PASO.md) | 04–08 |
+| Revisar el avance de datos y envíos | [Avance de compra](AVANCE-COMPRA-09-10.md) | 08–10 |
 | Aprender consultas y transacciones | [Referencia de Prisma](PRISMA-REFERENCIA.md) y [Prisma en NOVA](../prisma/README.md) | 06–08, 13 y 31 |
 | Entender migraciones y la transición | [Migraciones para principiantes](MIGRACIONES.md) y [transición a Prisma Migrate](PEDIDOS-PRISMA-PASO-A-PASO.md#2-crear-el-punto-de-partida) | 06 y 27 |
 | Ejecutar pruebas | [Comprobaciones locales](TESTING.md) | 07, 08 y 26 |
