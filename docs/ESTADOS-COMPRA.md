@@ -39,9 +39,13 @@ Esta tabla no es una correspondencia exhaustiva. Por ejemplo, tras el rechazo de
 
 Un `PaymentIntent` representa el proceso de cobro. Un `SetupIntent` prepara un método de pago para usarlo en el futuro sin realizar ese cobro. Si usamos Stripe Checkout, también tendremos que estudiar la sesión de Checkout y sus eventos: sus estados no son idénticos a los de `PaymentIntent`.
 
-## Siguiente pregunta para el reto
+## Decisión: reserva durante 30 minutos
 
-Si se rechaza un pago pero el comprador puede volver a intentarlo, ¿mantenemos la reserva durante un tiempo o la liberamos inmediatamente? Hay que decidirlo teniendo en cuenta las unidades disponibles, la duración de la sesión y los pagos que puedan confirmarse tarde.
+El equipo ha elegido mantener la reserva **30 minutos desde su creación**. Si se rechaza un intento de pago, el comprador podrá volver a intentarlo dentro del plazo restante; cada rechazo no reinicia los 30 minutos. La interfaz deberá mostrar hasta cuándo está reservada la prenda.
+
+Si el pago se confirma, la reserva se convertirá en venta. Al llegar al límite sin pago confirmado, se deberá gestionar la caducidad y liberar la prenda cuando sea seguro hacerlo. Esta regla todavía no está implementada.
+
+Queda por diseñar cómo coordinar la sesión de Stripe y la reserva, qué hacer si se recibe tarde una confirmación de pago y cómo evitar que se libere una prenda mientras aún pueda cobrarse. También hay que definir las transiciones y comprobaciones de concurrencia en los retos 12–14 y 18. El comprador no podrá contar con la prenda después de vencer la reserva; si vuelve a intentar comprarla, habrá que comprobar de nuevo el stock.
 
 ## Referencias
 

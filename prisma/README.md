@@ -2,7 +2,7 @@
 
 [← Documentación](../docs/README.md) · [Mapa de retos](../docs/MAPA-RETOS.md) · Referencia para los retos 06–08.
 
-> Esta guía describe la integración anterior. La transición a Prisma Migrate está en preparación: consultad [Pedidos y Prisma paso a paso](../docs/PEDIDOS-PRISMA-PASO-A-PASO.md) antes de aplicar migraciones. Los scripts existentes aún usan el migrador SQL anterior.
+> Esta rama usa Prisma Migrate. Consultad [Pedidos y Prisma paso a paso](../docs/PEDIDOS-PRISMA-PASO-A-PASO.md) antes de migrar una base existente creada con el sistema anterior.
 
 Este directorio sirve para aprender y documentar el esquema de PostgreSQL de NOVA.
 
@@ -17,8 +17,7 @@ Este directorio sirve para aprender y documentar el esquema de PostgreSQL de NOV
 - NOVA conserva `pg` mediante `src/lib/db.ts` en los módulos que aún no se han
   migrado a Prisma.
 
-El cliente tipado no es dueño del esquema: las migraciones SQL existentes
-siguen siendo la única vía para modificar la base de datos.
+El cliente tipado no modifica las tablas. Prisma Migrate aplica el historial de `prisma/migrations` a la base configurada.
 
 ## Qué representa el esquema
 

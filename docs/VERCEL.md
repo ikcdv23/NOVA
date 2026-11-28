@@ -2,7 +2,7 @@
 
 [← Documentación](README.md) · [Mapa de retos](MAPA-RETOS.md) · Referencia transversal para los retos 15, 22, 25 y 27.
 
-> La transición a Prisma Migrate está en preparación; la sección de migraciones describe el despliegue SQL anterior. Consultad el [estado de la transición](PEDIDOS-PRISMA-PASO-A-PASO.md#6-cómo-trabajar-en-adelante) antes de modificar un entorno.
+> Esta rama prepara el uso de Prisma Migrate. Consultad el [estado de la transición](PEDIDOS-PRISMA-PASO-A-PASO.md#6-cómo-trabajar-en-adelante) antes de modificar una base existente; no se ha aplicado a ninguna base remota.
 
 ## Archivos y entornos
 
@@ -101,12 +101,12 @@ Los pushes y las pull requests de `dev`, `feature/*`, `fix/*`, `chore/*` u otras
 
 ### Instalación y cambios de esquema
 
-Se usa `npm ci` con `package-lock.json` y `npm run build`, que también genera Prisma Client. Las migraciones SQL de `db/migrations/` siguen siendo la fuente de verdad: generar Prisma Client no crea tablas. No uses `prisma db push` ni Prisma Migrate para esta base.
+Se usa `npm ci` con `package-lock.json` y `npm run build`, que también genera Prisma Client. Las migraciones nuevas están en `prisma/migrations/`: generar Prisma Client no crea tablas. Una base existente con el historial antiguo requiere revisar su baseline antes de aplicar Prisma Migrate.
 
 Las compilaciones no ejecutan migraciones, seed ni altas de administrador. Antes de publicar código que necesite un cambio de esquema, aplica únicamente las migraciones revisadas sobre la base elegida. Con una exportación válida de Production:
 
 ```powershell
-npx tsx --env-file=.vercel/production.env scripts/migrate.ts
+node --env-file=.vercel/production.env ./node_modules/prisma/build/index.js migrate deploy
 ```
 
 Este comando **modifica la base de producción**. El ejecutor aplica los SQL pendientes en una transacción con bloqueo y registra los ya aplicados. No crea prendas ni administradores.

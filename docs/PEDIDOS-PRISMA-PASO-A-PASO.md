@@ -42,9 +42,9 @@ En una base nueva de pruebas se aplicó `0_init` y después se generó la migrac
 4. Ejecutad `npm run prisma:generate` y las pruebas.
 5. Incluid esquema y migración en Git. En una base ya preparada y con su historial correcto, `npx prisma migrate deploy` aplica las migraciones pendientes; no genera otras nuevas.
 
-En Prisma 7, `prisma.config.ts` de NOVA lee la variable del entorno y no carga `.env` por sí solo. No imprimáis la cadena de conexión ni utilicéis accidentalmente producción. La migración inicial de una base real exige copia de seguridad, revisión del esquema y del historial, y comprobaciones por entorno antes de `npx prisma migrate resolve --applied 0_init`. Para bases vacías no se marca: se aplica el historial completo con `migrate deploy`.
+En Prisma 7, `prisma.config.ts` de NOVA carga `.env` mediante `dotenv/config` y después lee `DATABASE_URL` de `process.env`. Una variable ya definida en el entorno puede tener prioridad sobre la del archivo: comprobad siempre a qué base apunta sin publicar credenciales. La migración inicial de una base real exige copia de seguridad, revisión del esquema y del historial, y comprobaciones por entorno antes de `npx prisma migrate resolve --applied 0_init`. Para bases vacías no se marca: se aplica el historial completo con `migrate deploy`.
 
-**Transición pendiente:** los scripts existentes `db:migrate` y `railway:migrate` todavía ejecutan el migrador SQL antiguo. No ejecutéis ambos sistemas sobre una misma base como si compartieran historial. Antes de cambiar despliegues, hay que planificar y verificar el baseline de cada entorno, actualizar los scripts y revisar también `docs/VERCEL.md` y los procesos automáticos. No se ha desplegado ni modificado ninguna base remota.
+**Transición:** los scripts `db:migrate`, `db:migrate:remote` y `railway:migrate` usan ahora `prisma migrate deploy`. La base local fue reiniciada por el usuario y `prisma migrate status` confirmó las dos migraciones aplicadas. No se han modificado bases remotas. Antes de desplegar sobre cualquier base que ya contenga tablas, comprobad su historial y preparad su baseline; no ejecutéis ambos sistemas como si compartieran historial.
 
 ## 7. Pruebas
 
