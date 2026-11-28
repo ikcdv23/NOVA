@@ -128,7 +128,7 @@ Prisma también permite escrituras anidadas para crear o actualizar registros re
 
 Prisma Client lee y modifica registros. Las migraciones cambian la estructura de la base de datos y mantienen un historial de esos cambios. Generar el cliente no crea ni modifica tablas.
 
-NOVA ya tiene migraciones SQL propias en `db/migrations`, ejecutadas por `scripts/migrate.ts`, con su historial en `schema_migrations`. Prisma Migrate usa su propio historial. Antes de adoptarlo sobre una base existente, hay que comprobar que el esquema coincide con la base y planear una migración inicial de referencia; no se debe reiniciar una base con datos sin entender las consecuencias.
+NOVA conservaba migraciones SQL propias en `db/migrations` y su historial en `schema_migrations`. Esta rama utiliza Prisma Migrate, que tiene su propio historial. Antes de usarlo sobre una base existente, hay que comprobar que el esquema coincide con el punto inicial y planear la transición; no se debe reiniciar una base con datos sin entender las consecuencias.
 
 Para una explicación desde cero, un ejemplo real de NOVA y el flujo para otros proyectos, consulta [Migraciones para principiantes](./MIGRACIONES.md).
 
