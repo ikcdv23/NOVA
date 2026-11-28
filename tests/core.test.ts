@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { demoProducts } from '../src/modules/catalog/demo';
 import { filterProducts } from '../src/modules/catalog/filter';
-import { cartSchema, quoteCart } from '../src/modules/cart/logic';
+import { calculateCart, cartSchema, quoteCart } from '../src/modules/cart/logic';
 import { productSchema, slugifyProductName } from '../src/modules/admin/validation';
 import { hashPassword, verifyPassword } from '../src/modules/auth/password';
 test('catalog combines collection, size, price, category, condition and availability', () => {
@@ -63,6 +63,15 @@ test('invalid, deleted, unavailable and duplicate overstock cart lines are rejec
   assert.throws(() => quoteCart([], []), /vacía/);
   assert.equal(cartSchema.safeParse([{ ...item, quantity: -2 }]).success, false);
   assert.equal(cartSchema.safeParse([{ ...item, quantity: 1.5 }]).success, false);
+});
+test('cart ignores prices supplied by the browser and adds different products', () => {
+  const first = demoProducts[0];
+  const second = demoProducts[1];
+  const items = [
+    { productId: first.id, size: 'L', quantity: 1, priceCents: 1 },
+    { productId: second.id, size: 'M', quantity: 1, priceCents: 1 },
+  ];
+  assert.equal(calculateCart(items, [first, second]).total, first.priceCents + second.priceCents);
 });
 const valid = {
   name: 'Camisa Oxford',
