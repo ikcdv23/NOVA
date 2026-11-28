@@ -46,7 +46,7 @@ Se utiliza Webpack de Next para evitar restricciones de enlaces de Turbopack en 
 1. Arranca Docker Desktop y ejecuta `docker compose up -d`. Incluye PostgreSQL en 5433 y MinIO en 9000, ambos restringidos a localhost. El puerto 5433 evita conflictos con otros PostgreSQL en el puerto habitual 5432; debe coincidir con el puerto de `DATABASE_URL` en `.env`.
 2. Abre la consola de MinIO en http://localhost:9001, usa las credenciales locales de `.env.example` y crea el bucket **nova-images**, privado. No uses esas credenciales en producción.
 3. En `.env`, cambia `DEMO_MODE=false`. Las otras variables de ejemplo conectan con estos servicios locales.
-4. Ejecuta `npm run db:migrate`. Aplica las migraciones SQL una sola vez, en transacción, con un bloqueo entre despliegues concurrentes.
+4. Ejecuta `npm run db:migrate` sobre una base nueva o ya preparada para Prisma Migrate. Para una base existente con el historial antiguo, revisa primero [la transición](docs/PEDIDOS-PRISMA-PASO-A-PASO.md#6-cómo-trabajar-en-adelante).
 5. Opcional: `npm run db:seed`. Inserta ocho prendas sin sobrescribir las existentes. Sus imágenes de ejemplo se sirven desde `public/images`.
 6. Crea tu administrador como se explica abajo y reinicia `npm run dev`.
 
@@ -141,9 +141,9 @@ Las páginas de catálogo leen directamente del servicio: no necesitan una acci�
 para mostrar datos. El carrito vive en el navegador y consulta el catálogo antes
 de preparar WhatsApp, por lo que no tiene repositorio propio. Los repositorios de
 catálogo, administración, autenticación y medios usan Prisma Client; otros
-scripts siguen usando `pg`. Las migraciones SQL de `db/migrations/` se siguen
-ejecutando con el sistema anterior mientras se prepara la transición a Prisma
-Migrate. Revisad el [procedimiento de transición](docs/PEDIDOS-PRISMA-PASO-A-PASO.md#6-cómo-trabajar-en-adelante) antes de cambiar una base existente.
+scripts siguen usando `pg`. Las migraciones actuales están en `prisma/migrations/`;
+las de `db/migrations/` conservan el historial anterior. Revisad el
+[procedimiento de transición](docs/PEDIDOS-PRISMA-PASO-A-PASO.md#6-cómo-trabajar-en-adelante) antes de cambiar una base existente.
 
 El stock vive en `variants`, por prenda y talla. El precio es un entero de céntimos. El catálogo usa exclusivamente prendas publicadas; las lecturas son dinámicas y las mutaciones invalidan las rutas. El navegador guarda solo identificadores, tallas y cantidades: el servidor vuelve a comprobar publicación, tallas, precios y disponibilidad al preparar WhatsApp. No escribe pedidos, no reserva unidades y nunca decrementa stock.
 

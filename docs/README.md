@@ -26,7 +26,7 @@ Esta es la puerta de entrada para encontrar documentación del proyecto y relaci
 
 En la rama `define-vocabulary-and-states` se prepararon cambios locales para los retos 04–08. [La guía paso a paso](PEDIDOS-PRISMA-PASO-A-PASO.md) explica el alcance y lo que queda por revisar. El estado de Git determina si esos cambios están confirmados o subidos; este índice no sustituye esa comprobación.
 
-**Migraciones:** la transición a Prisma Migrate está en preparación. Los scripts de despliegue existentes siguen usando el migrador SQL anterior. No apliquéis ambos historiales indistintamente ni ejecutéis la transición en una base con datos sin revisar la [guía de transición](PEDIDOS-PRISMA-PASO-A-PASO.md#6-cómo-trabajar-en-adelante) y el entorno.
+**Migraciones:** los scripts de esta rama usan Prisma Migrate. Las bases existentes con el historial antiguo requieren una transición revisada antes de aplicar migraciones; consultad la [guía](PEDIDOS-PRISMA-PASO-A-PASO.md#6-cómo-trabajar-en-adelante) y el entorno. No se han modificado bases remotas.
 
 ## Mantener la documentación
 

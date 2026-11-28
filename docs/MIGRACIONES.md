@@ -2,7 +2,7 @@
 
 [← Documentación](README.md) · [Mapa de retos](MAPA-RETOS.md) · **Reto 06**; referencia también para el reto 27.
 
-> **Actualización en curso:** se está preparando la transición de NOVA a Prisma Migrate. El documento describe el sistema SQL anterior; para el estado nuevo y los pasos de transición consultad [Pedidos y Prisma Migrate paso a paso](./PEDIDOS-PRISMA-PASO-A-PASO.md). No se ha migrado ninguna base remota.
+> **Actualización:** esta rama usa Prisma Migrate; la sección histórica explica el sistema SQL anterior. Consultad [Pedidos y Prisma Migrate paso a paso](./PEDIDOS-PRISMA-PASO-A-PASO.md) antes de aplicar cambios a una base existente. No se ha migrado ninguna base remota.
 
 ## 1. ¿Qué es una migración?
 
@@ -38,9 +38,9 @@ El ejecutor consulta el historial de esa base y aplica las migraciones pendiente
 
 Una **transacción de base de datos**, cuando la herramienta y las operaciones la permiten, agrupa cambios para que se confirmen juntos o se deshagan ante un error. No todas las herramientas o bases ejecutan todas las operaciones de migración de la misma forma.
 
-## 4. Cómo funciona en NOVA
+## 4. Sistema anterior de NOVA y transición
 
-NOVA utiliza Prisma Client para consultas, pero sus migraciones actuales son **archivos SQL propios**, no migraciones de Prisma Migrate:
+NOVA utilizaba archivos SQL propios para migrar la base. Se conservan para comprender el historial anterior:
 
 - `db/migrations/`: guarda los archivos SQL. `001_initial.sql` crea la estructura inicial y `002_product_gender.sql` añade el género.
 - `scripts/migrate.ts`: lee los archivos `.sql` por orden de nombre y ejecuta los que no figuran en el historial.
@@ -64,7 +64,7 @@ Esto prepara los datos, pero no crea automáticamente una sección de mujer ni u
 
 ### Comandos de NOVA
 
-Para aplicar las migraciones pendientes a la base indicada en el `.env` local:
+Para aplicar las migraciones de Prisma pendientes a la base indicada en el `.env` local, siempre que sea nueva o ya esté preparada para Prisma Migrate:
 
 ```powershell
 npm run db:migrate
@@ -82,12 +82,12 @@ La migración 002 se probó en la base local aislada de pruebas durante esta imp
 
 ### Añadir otro campo en NOVA
 
-Por ejemplo, para añadir una marca opcional:
+Por ejemplo, para añadir una marca opcional con Prisma Migrate:
 
 1. Diseña el cambio y considera qué valor tendrán los productos existentes.
-2. Añade un nuevo archivo SQL con el siguiente nombre ordenado dentro de `db/migrations`. No modifiques `002` si ya se aplicó.
-3. Actualiza `prisma/schema.prisma` para reflejar la estructura nueva y genera el cliente.
-4. Aplica la migración a una base local de pruebas y comprueba tanto los datos anteriores como la aplicación.
+2. Actualiza `prisma/schema.prisma` y genera la migración en una base de desarrollo aislada con `npx prisma migrate dev --name add_product_brand`.
+3. Revisa el SQL generado y ejecuta `npm run prisma:generate`.
+4. Comprueba tanto los datos anteriores como la aplicación en bases locales de pruebas.
 5. Guarda migración, esquema y código juntos en Git. Aplica la migración revisada en cada entorno que la necesite.
 
 ## 5. ¿Cómo lo haría en un proyecto nuevo con Prisma Migrate?
@@ -114,7 +114,7 @@ Antes de introducir una herramienta nueva, comprueba la estructura real de cada 
 
 En Prisma Migrate, el proceso llamado **baseline** crea un punto de partida para una base existente: se prepara una migración inicial que represente su estado y se marca como aplicada en las bases que ya tienen esa estructura. La herramienta puede aplicar las migraciones posteriores. Marcarla como aplicada registra una decisión: no comprueba por sí solo que todos los objetos y datos coincidan.
 
-Prueba el procedimiento primero con una copia o una base aislada y sigue la documentación oficial de la versión instalada. Si ya existe otro sistema de migraciones, como en NOVA, hay que acordar cómo transferir el control y evitar que ambos sistemas apliquen cambios contradictorios. **NOVA no se ha cambiado a Prisma Migrate**; no ejecutes el flujo del apartado anterior sobre sus bases actuales como si estuvieran vacías.
+Prueba el procedimiento primero con una copia o una base aislada y sigue la documentación oficial de la versión instalada. NOVA prepara el paso a Prisma Migrate; las bases existentes con el sistema anterior necesitan una transición revisada. No ejecutes el flujo del apartado anterior sobre ellas como si estuvieran vacías.
 
 ## 7. Dudas frecuentes
 

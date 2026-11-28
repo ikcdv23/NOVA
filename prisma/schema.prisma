@@ -54,20 +54,20 @@ model LoginAttempt {
 }
 
 model Product {
-  id           String    @id @db.Uuid
+  id           String      @id @db.Uuid
   name         String
-  slug         String    @unique
+  slug         String      @unique
   collection   String
   category     String
-  gender       Gender    @default(MIX)
-  priceCents   Int       @map("price_cents")
+  gender       Gender      @default(MIX)
+  priceCents   Int         @map("price_cents")
   measurements String
   description  String
   condition    String
-  published    Boolean   @default(false)
-  featured     Boolean   @default(false)
-  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt    DateTime  @default(now()) @map("updated_at") @db.Timestamptz(6)
+  published    Boolean     @default(false)
+  featured     Boolean     @default(false)
+  createdAt    DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime    @default(now()) @map("updated_at") @db.Timestamptz(6)
   variants     Variant[]
   images       Image[]
   orderItems   OrderItem[]
@@ -77,20 +77,26 @@ model Product {
 }
 
 model Order {
-  id            String      @id @db.Uuid
-  status        String      @default("PENDING")
-  paymentStatus String      @default("PENDING") @map("payment_status")
-  email         String
-  shippingName  String      @map("shipping_name")
-  shippingAddress Json      @map("shipping_address")
-  currency      String      @default("EUR") @db.VarChar(3)
-  subtotalCents Int         @map("subtotal_cents")
-  shippingCents Int         @map("shipping_cents")
-  totalCents    Int         @map("total_cents")
-  createdAt     DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
-  items         OrderItem[]
+  id              String      @id @db.Uuid
+  status          OrderStatus @default(PENDING)
+  paymentStatus   String      @default("PENDING") @map("payment_status")
+  email           String
+  shippingName    String      @map("shipping_name")
+  shippingAddress Json        @map("shipping_address")
+  currency        String      @default("EUR") @db.VarChar(3)
+  subtotalCents   Int         @map("subtotal_cents")
+  shippingCents   Int         @map("shipping_cents")
+  totalCents      Int         @map("total_cents")
+  createdAt       DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  items           OrderItem[]
 
   @@map("orders")
+}
+
+enum OrderStatus {
+  PENDING
+  COMPLETE
+  CANCELED
 }
 
 model OrderItem {
@@ -149,7 +155,7 @@ model SchemaMigration {
 }
 
 enum Gender {
- MALE
- FEMALE
- MIX
+  MALE
+  FEMALE
+  MIX
 }

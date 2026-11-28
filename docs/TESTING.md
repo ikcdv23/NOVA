@@ -23,7 +23,7 @@ Antes de iniciar la app, en la tercera terminal PowerShell:
 ```powershell
 $env:DATABASE_URL='postgresql://nova_qa:local_qa_only@127.0.0.1:55439/nova_qa'
 $env:DEMO_MODE='false'
-npx tsx scripts/migrate.ts
+npx prisma migrate deploy
 npx tsx scripts/seed.ts
 $env:ADMIN_EMAIL='admin@nova.test'
 $env:ADMIN_PASSWORD='NOVA-local-test-only-284!'
